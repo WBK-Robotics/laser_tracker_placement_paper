@@ -262,10 +262,24 @@ class CustomEnv:
         robot2 = pi.RobotBase(comau_urdf, start_pos2, start_orientation2)
 
 
+        marker = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
+                                 [[0.1, 0.1, 0.1],
+                                  [0.1, -0.1, 0.1],
+                                  [-0.1, 0.1, 0.1],
+                                  [-0.1, -0.1, 0.1]])
+        marker.couple
+
+        second_endeffector = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
+                                    [[0.1, 0.1, 0.1],
+                                    [0.1, -0.1, 0.1],
+                                    [-0.1, 0.1, 0.1],
+                                    [-0.1, -0.1, 0.1]])
+
+        second_endeffector.couple(robot2, [0, 0, 0], [0, 0, 0, 1])
 
         # TODO define end effectors, and paths to return
 
-        return [marker, second_marker], [upward, downward]
+        return [marker,second_endeffector], [upward]
 
     def reset(self):
         """Resets the environment to the initial state
