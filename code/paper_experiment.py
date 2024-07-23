@@ -214,16 +214,32 @@ class CustomEnv:
         return visibility
 
     def _populate_cell(self):
-        dirname = os.path.dirname(__file__)
-        urdf_file = os.path.join(dirname, 'ground.urdf')
-        p.loadURDF(urdf_file, [0, 0, 0], useFixedBase=True)
+        dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects')
+        #load Objects__________________________________________________
+        plane_urdf = os.path.join(dirname,'plane.urdf')
+        p.loadURDF(plane_urdf, [0, 0, 0], p.getQuaternionFromEuler([0, 0, 0]),
+                   useFixedBase=True, globalScaling=0.22)
 
-        cylinder_id = p.createCollisionShape(
-            p.GEOM_CYLINDER, radius=0.5, height=1)
-        cylinder_color = p.createVisualShape(
-            p.GEOM_CYLINDER, radius=0.5, length=1, rgbaColor=[196/255, 208/255, 207/255, 1], specularColor=[0, 0, 0])
-        p.createMultiBody(0, cylinder_id, cylinder_color,
-                          self.cylinder_center, p.getQuaternionFromEuler([np.pi/2, 0, 0]))
+
+        fofa_path = os.path.join(dirname, 'InRePro', 'InRePro.urdf')
+        p.loadURDF(fofa_path, [0,0,0], p.getQuaternionFromEuler([np.pi/2,0,0]),
+                   useFixedBase=True, globalScaling=0.001)
+
+        ponticon_path = os.path.join(dirname,'ponticon', 'ponticon.urdf')
+        p.loadURDF(ponticon_path, [0,0,0], p.getQuaternionFromEuler([np.pi/2,0,0]),
+                   useFixedBase=True, globalScaling=0.001)
+
+        dmg_path = os.path.join(dirname,'DMG', 'DMG.urdf')
+        p.loadURDF(dmg_path, [0,0,0], p.getQuaternionFromEuler([np.pi/2,0,0]),
+                   useFixedBase=True, globalScaling=0.001)
+
+        mm_path = os.path.join(dirname,  'modules', 'milling_module.urdf')
+        p.loadURDF(mm_path, [-0.6,-4.6,0.95], p.getQuaternionFromEuler([0,0,np.pi/2]),
+                   useFixedBase=True, globalScaling=0.001)
+
+        table_path = os.path.join(dirname,  'modules', 'table.urdf')
+        p.loadURDF(table_path, [-0.6, -4.6, 0.95], p.getQuaternionFromEuler([0, 0, np.pi/2]),
+                   useFixedBase=True, globalScaling=0.001)
 
     def _setup_cell(self):
         """ Function that sets up the markers in the cell and the paths they follow
@@ -232,81 +248,22 @@ class CustomEnv:
             list(OpticalMarker): A list of the markers as OpticalMarker objects
             list(ToolPath): A list of the paths as ToolPath objects
         """
-        # load a robot
-        p.setAdditionalSearchPath(pybullet_data.getDataPath())
-        self.robot = pi.RobotBase(
-            "kuka_iiwa/model.urdf", [0, -0.3, 0], [0, 0, 0, 1])
-        self.second_robot = pi.RobotBase(
-            "kuka_iiwa/model.urdf", [0, 0.3, 0], [0, 0, 0, 1])
 
-        for i in range(7):
-            p.changeVisualShape(
-                self.robot.urdf, -1+i, rgbaColor=[196/255, 208/255, 207/255, 1])
-            p.changeVisualShape(
-                self.second_robot.urdf, -1+i, rgbaColor=[196/255, 208/255, 207/255, 1])
 
-        # loard a marker
-        dirname = os.path.dirname(__file__)
-        urdf_file = os.path.join(dirname, 'marker.urdf')
-        marker = OpticalMarker(
-            urdf_file, [0.2, 0.5, 0], [0, 0, 0, 1],
-            [np.array([0, 0, -0.2]), np.array([0, 0.04, 0])])
-        second_marker = OpticalMarker(
-            urdf_file, [0.2, 0.7, 0], [0, 0, 0, 1],
-            [np.array([0, 0, -0.2]), np.array([0, 0.04, 0])])
-        marker.couple(self.robot)
-        second_marker.couple(self.second_robot)
 
-        # parameters of the dynamic paths
-        # .........................................................................
-        number_of_points = self.number_of_steps
-        point_mutliplier = int(number_of_points/10)
-        side_length = 0.5
-        side_offset = 0.3
-        # .........................................................................
+        #load Robots__________________________________________________
+        dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell')
+        comau_urdf = os.path.join(dirname,'robot_descriptions', 'comau_nj290_robot.urdf')
+        start_pos = np.array([-3.6353162, -0.6, 0])
+        start_orientation = p.getQuaternionFromEuler([0, 0, 0])
+        robot = pi.RobotBase(comau_urdf, start_pos, start_orientation)
+        start_pos2 = np.array([-0.12, -2.59, 0])
+        start_orientation2 = p.getQuaternionFromEuler([0, 0, np.pi])
+        robot2 = pi.RobotBase(comau_urdf, start_pos2, start_orientation2)
 
-        # setup a dynamic path for the first marker
-        start_pos = self.cylinder_center + \
-            np.array([self.radius, -side_offset, 0])
-        turning_pos = self.cylinder_center + \
-            np.array([self.radius*np.cos(0.5), -
-                     side_offset, self.radius*np.sin(0.5)])
-        end_pos = turning_pos + np.array([0, side_length, 0])
 
-        upward = pi.circular_interpolation(
-            start_pos, turning_pos, 0.5, 3*point_mutliplier, 1, False)
-        sideward = pi.linear_interpolation(
-            turning_pos, end_pos, 7*point_mutliplier)
-        upward.append(sideward)
 
-        upward.draw(color=[178/255, 55/255, 44/255])
-
-        quaternion_orientation = p.getQuaternionFromEuler([0, -0.5*np.pi, 0])
-        orientation = np.array([[quaternion_orientation[0]]*len(upward.positions[0]),
-                                [quaternion_orientation[1]] *
-                                len(upward.positions[0]),
-                                [quaternion_orientation[2]] *
-                                len(upward.positions[0]),
-                                [quaternion_orientation[3]]*len(upward.positions[0])])
-        upward.orientations = orientation
-
-        # setup a dynamic path for the second marker
-        start_pos = self.cylinder_center + \
-            np.array([self.radius*np.cos(0.5),
-                     side_offset, self.radius*np.sin(0.5)])
-        turning_pos = self.cylinder_center + \
-            np.array([self.radius, side_offset, 0])
-        end_pos = turning_pos + np.array([0, -side_length, 0])
-
-        downward = pi.circular_interpolation(
-            start_pos, turning_pos, 0.5, 3*point_mutliplier, 1, True)
-        sideward = pi.linear_interpolation(
-            turning_pos, end_pos, 7*point_mutliplier)
-        downward.append(sideward)
-
-        downward.orientations = orientation
-
-        downward.draw(color=[178/255, 55/255, 44/255])
+        # TODO define end effectors, and paths to return
 
         return [marker, second_marker], [upward, downward]
 
@@ -402,114 +359,66 @@ class CustomEnv:
         return min_singular_value
 
 
-class CustomEnvNoOri(CustomEnv):
-
-    def _costs(self):
-        """Returns a cost matrix for each camera and marker.
-        """
-
-        # list of the visibility of each marker for each stereo camera system
-        visibility = self._compute_visibility(False)
-
-        camera_visibilities = [np.array(
-            [np.sum(vis) for vis in camera_visibility]) for camera_visibility in visibility]
-
-        return -1*np.sum(camera_visibilities, axis=0)
 
 
-def get_5d_from_2d(states):
-    """Converts a 2d array of 2d camera states to a 5d array of 5d camera states.
-    Args:
-        states (np.ndarray): 2d array of 2d camera states
-    Returns:
-        np.ndarray: 5d array of 5d camera states
-    """
-    states_5d = deepcopy(states)
-    for i in range(int(len(states_5d)/2)):
-        states_5d = np.insert(
-            states_5d, 2*i+2+3*i, np.zeros((3, len(states_5d[0]))), axis=0)
-    return states_5d
+def run_experiment():
+
+    def objective_function(particles):
+
+        # divide the particles into list of camera states
+        camera_particles = np.split(particles, len(particles)/6, axis=0)
+
+        camera_states = []
+        for i in range(len(camera_particles[0][0])):
+            camera_state = [[state[:3, i], state[3:, i]]
+                            for state in camera_particles]
+            camera_states.append(camera_state)
+
+        focal_length = 0.1
+        intrinsic_matrix = [0.0]*9
+        intrinsic_matrix[0*3+0] = focal_length
+        intrinsic_matrix[1*3+1] = focal_length
+        intrinsic_matrix[2*3+2] = float(1)
+        intrinsic_matrix = tuple(intrinsic_matrix)
+
+        env.configure_cameras(
+            camera_states, [[intrinsic_matrix]*len(camera_particles)]*len(particles[0]))
+        costs = env.run_simulation()
+        costs = np.sum(costs, axis=0)
+
+        # penalize the cameras that are below the ground
+        for i, stereo_cameras in enumerate(camera_states):
+            for camera in stereo_cameras:
+                if camera[0][2] < 0:
+                    costs[i] += 1000
+        return costs
+
+
+    env = CustomEnv()
+
+    n_particles = 100
+    initial_population = np.random.rand(
+        9, n_particles)*0.3*np.pi
+
+
+    np.save("initial_states.npy",initial_population)
+
+    start_velocities = np.random.randn(
+        9, n_particles) * 0.5
+
+    with console.status("Finding optimal camera placements"):
+        particle_log, obj_log = particle_optimizer_log(objective_function, initial_population,
+                                                        start_velocities, max_iter=100)
+    env.close()
+    # save particle log and objective log
+    np.save("particle_log.npy", particle_log)
+    np.save("objective_log.npy", obj_log)
+
+
 
 
 if __name__ == "__main__":
-    # run optimization
-    # ----------------------------------------------------------------------------------------------
-    console = Console()
+    env = CustomEnv(rendering=True)
 
-    # set up first environment with only orientation
-
-
-
-    def run_experiment():
-
-        def objective_function(particles):
-
-            # divide the particles into list of camera states
-            camera_particles = np.split(particles, len(particles)/6, axis=0)
-
-            camera_states = []
-            for i in range(len(camera_particles[0][0])):
-                camera_state = [[state[:3, i], state[3:, i]]
-                                for state in camera_particles]
-                camera_states.append(camera_state)
-
-            focal_length = 0.1
-            intrinsic_matrix = [0.0]*9
-            intrinsic_matrix[0*3+0] = focal_length
-            intrinsic_matrix[1*3+1] = focal_length
-            intrinsic_matrix[2*3+2] = float(1)
-            intrinsic_matrix = tuple(intrinsic_matrix)
-
-            env.configure_cameras(
-                camera_states, [[intrinsic_matrix]*len(camera_particles)]*len(particles[0]))
-            costs = env.run_simulation()
-            costs = np.sum(costs, axis=0)
-
-            # penalize the cameras that are below the ground
-            for i, stereo_cameras in enumerate(camera_states):
-                for camera in stereo_cameras:
-                    if camera[0][2] < 0:
-                        costs[i] += 1000
-            return costs
-
-        def spherical_stereo_objective_function(particles):
-            radius = camera_radius
-
-            cartesian_camera_states = spherical_particles_to_cartesian_particles(
-                particles, radius)
-            all_objectives = objective_function(cartesian_camera_states)
-
-            return all_objectives
-
-        def no_orientation_spherical_stereo_objective_function(particles):
-
-            # add three columns of zeros every two rows to the particles
-            for i in range(int(len(particles)/2)):
-                particles = np.insert(
-                    particles, 2*i+2+3*i, np.zeros((3, len(particles[0]))), axis=0)
-
-            return spherical_stereo_objective_function(particles)
-
-        env = CustomEnvNoOri()
-
-        n_particles = 100
-        initial_population = np.random.rand(
-            9, n_particles)*0.3*np.pi
-
-
-        np.save("initial_states.npy", spherical_particles_to_cartesian_particles(
-            initial_population, camera_radius))
-
-        start_velocities = np.random.randn(
-            9, n_particles) * 0.5
-
-        with console.status("Finding optimal camera placements"):
-            particle_log, obj_log = particle_optimizer_log(no_orientation_spherical_stereo_objective_function, initial_population,
-                                                           start_velocities, max_iter=100)
-        env.close()
-
-
-
-    for i in [2, 3, 4, 5, 6, 7, 8]:
-        print("current camera numbers: "+str(i))
-        run_experiment(i)
+    while True:
+        p.stepSimulation()
