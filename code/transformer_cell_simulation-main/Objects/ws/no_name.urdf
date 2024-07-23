@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<robot name="grinder">
+  <link name="baseLink">
+    <contact>
+      <lateral_friction value="5.0"/>
+      <rolling_friction value="0.3"/>
+      <contact_cfm value="0.3"/>
+      <contact_erp value="0.8"/>
+      <damping value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+       <mass value="1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="5"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="30 0 0"/>
+      <geometry>
+		<mesh filename="mesh/noname_housing01.stl"/>
+      </geometry>
+       <material name="orange">
+        <color rgba="0.8 0.3 0.0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="30 0 0"/>
+      <geometry>
+        <mesh filename="mesh/noname_housing01.stl"/>
+      </geometry>
+    </collision>
+  </link>
+    <link name="housing02">
+    <visual>
+      <origin rpy="0 0 0" xyz="30 0 0"/>
+      <geometry>
+		<mesh filename="mesh/noname_housing02.stl"/>
+      </geometry>
+       <material name="dark">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+  </link>
+  <link name="housing03">
+    <visual>
+      <origin rpy="0 0 0" xyz="30 0 0"/>
+      <geometry>
+		<mesh filename="mesh/noname_housing03.stl"/>
+      </geometry>
+       <material name="grey1">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+  <link name="axle">
+    <visual>
+      <origin rpy="0 0 0" xyz="30 0 0"/>
+      <geometry>
+		<mesh filename="mesh/noname_axle.stl"/>
+      </geometry>
+       <material name="grey2">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="l1" type="fixed">
+      <parent link="baseLink"/>
+      <child link="housing02"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <joint name="l2" type="fixed">
+      <parent link="baseLink"/>
+      <child link="housing03"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <joint name="l3" type="fixed">
+      <parent link="baseLink"/>
+      <child link="axle"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
+

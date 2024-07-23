@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<robot name="ponticon">
+  <link name="baseLink">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="0.8"/>
+      <damping value=".0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+       <mass value="1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="2"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+		<mesh filename="mesh/ponticon_white.stl"/>
+      </geometry>
+       <material name="white">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="mesh/ponticon_white.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="blue">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="0.8"/>
+      <damping value=".0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+       <mass value="1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="2"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+		<mesh filename="mesh/ponticon_blue_open.stl"/>
+      </geometry>
+       <material name="glass">
+          <color rgba="0.4, 0.4, 0.7, 1.0"/>
+      </material>
+    </visual>
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="mesh/ponticon_blue_open.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="black">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="0.8"/>
+      <damping value=".0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+       <mass value="1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="2"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+		<mesh filename="mesh/ponticon_black_open.stl"/>
+      </geometry>
+       <material name="black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="mesh/ponticon_black_open.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="grey">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="0.8"/>
+      <damping value=".0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+       <mass value="1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="2"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+		<mesh filename="mesh/ponticon_grey.stl"/>
+      </geometry>
+       <material name="black">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	 	<mesh filename="mesh/ponticon_grey.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="blackJoint" type="fixed">
+      <parent link="baseLink"/>
+      <child link="black"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <joint name="blueJoint" type="fixed">
+      <parent link="baseLink"/>
+      <child link="blue"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <joint name="greyJoint" type="fixed">
+      <parent link="baseLink"/>
+      <child link="grey"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
+
