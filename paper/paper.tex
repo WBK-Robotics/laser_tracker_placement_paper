@@ -66,7 +66,7 @@ Line of sight visibility and field of view visibility.
 Both  are depicted in figure \ref{fig:visibility}.
 \begin{figure}
         \centering
-        \includegraphics[width=0.5\textwidth]{figures/visibility.png}
+        \includegraphics[width=0.8\textwidth]{figures/visibility.png}
         \caption{Field of view (VOW) angle range and line of sight (LOS) components of marker visibility}
         \label{fig:visibility}
 \end{figure}
@@ -202,7 +202,13 @@ A image of the simulation environment is shown in figure \ref{fig:simulation}.
 \end{figure}
 
 \section{Experiment Setup}
-
+To test the performance of our optimiser, we need to define a set of test cases.
+These consist of different trajectories of the two robots shown in figure \ref{fig:simulation}.
+Both robots are Comau NJ290 industrial robots with a reach of 2.9 metres.
+The right robot is used to service the CNC machine and the additive manufacturing system, while the left robot is used to perform a high-precision manufacturing task.
+To properly control this task, the left robot needs to be tracked by the laser tracker.
+We test whether our algorithm is able to find a placement of the laser tracking system and markers that can track the robot over its entire trajectory.
+We compare this to the performance of the original population of marker and laser tracker placements used to start the optimisation.
 
 
 
