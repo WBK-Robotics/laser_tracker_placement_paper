@@ -438,9 +438,9 @@ if __name__ == "__main__":
 
     # set up first environment with only orientation
 
-    number_of_cameras = 6
 
-    def run_experiment(number_of_cameras):
+
+    def run_experiment():
 
         def objective_function(particles):
 
@@ -494,48 +494,21 @@ if __name__ == "__main__":
 
         n_particles = 100
         initial_population = np.random.rand(
-            2, n_particles*number_of_cameras)*0.3*np.pi
+            9, n_particles)*0.3*np.pi
 
-        initial_5d_population = get_5d_from_2d(
-            initial_population.reshape(2*number_of_cameras, n_particles))
 
-        paths = env.paths
-        path_center = np.mean([np.mean(path.positions, axis=1)
-                               for path in paths], axis=0)
-        initial_5d_population = align_with_center(
-            initial_5d_population, path_center)
-        np.save("initial_states_"+str(number_of_cameras)+"_cameras.npy", spherical_particles_to_cartesian_particles(
-            initial_5d_population, camera_radius))
+        np.save("initial_states.npy", spherical_particles_to_cartesian_particles(
+            initial_population, camera_radius))
 
         start_velocities = np.random.randn(
-            2, number_of_cameras*n_particles) * 0.5
+            9, n_particles) * 0.5
 
         with console.status("Finding optimal camera placements"):
             particle_log, obj_log = particle_optimizer_log(no_orientation_spherical_stereo_objective_function, initial_population,
                                                            start_velocities, max_iter=100)
         env.close()
 
-        # set up second environment with orientation
-        env = CustomEnv()
 
-        grouped_particle_log = particle_log[-1].reshape(
-            2*number_of_cameras, n_particles)
-        initial_population = get_5d_from_2d(grouped_particle_log)
-
-        # orient initial population towards the center
-        initial_population = align_with_center(initial_population, path_center)
-
-        initial_velocities = np.random.randn(
-            5*number_of_cameras, n_particles) * 0.5
-
-        with console.status("Finding optimal camera placements"):
-            optimal_states = particle_optimizer(spherical_stereo_objective_function, initial_population,
-                                                initial_velocities, max_iter=200)
-
-        # save results
-        np.save("optimal_states_"+str(number_of_cameras)+"_cameras.npy", spherical_particles_to_cartesian_particles(
-            optimal_states[0].reshape((len(optimal_states[0]), 1)), camera_radius))
-        env.close()
 
     for i in [2, 3, 4, 5, 6, 7, 8]:
         print("current camera numbers: "+str(i))
