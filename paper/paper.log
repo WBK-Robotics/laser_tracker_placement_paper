@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  23 JUL 2024 10:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  23 JUL 2024 11:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -498,43 +498,32 @@ LaTeX Warning: Citation `ieee_sensors' on page 1 undefined on input line 64.
 
 LaTeX Warning: Reference `fig:visibility' on page 1 undefined on input line 66.
 
-
-LaTeX Warning: File `figures/visibility.png' not found on input line 69.
-
-
-c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:69: Package pdftex.def Error: File `figures/visibility.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.69 ...dth=0.5\textwidth]{figures/visibility.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<figures/visibility.png, id=1, 807.4968pt x 376.2858pt>
+File: figures/visibility.png Graphic file (type png)
+<use figures/visibility.png>
+Package pdftex.def Info: figures/visibility.png  used on input line 69.
+(pdftex.def)             Requested size: 173.56177pt x 80.87689pt.
 [1
 
-{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/visibility.png>] [2]
 
 LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 160.
 
 
 LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 161.
 
-[3]
 
-LaTeX Warning: Citation `pybullet_industrial' on page 4 undefined on input line 193.
+LaTeX Warning: Citation `pybullet_industrial' on page 3 undefined on input line 193.
 
 
-LaTeX Warning: Reference `fig:simulation' on page 4 undefined on input line 196.
+LaTeX Warning: Reference `fig:simulation' on page 3 undefined on input line 196.
 
 <figures/simulation.png, id=21, 1308.89pt x 651.43375pt>
 File: figures/simulation.png Graphic file (type png)
 <use figures/simulation.png>
 Package pdftex.def Info: figures/simulation.png  used on input line 199.
 (pdftex.def)             Requested size: 347.12354pt x 172.75833pt.
-[4] [5 <./figures/simulation.png>] (./paper.aux)
+[3] [4 <./figures/simulation.png>] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -543,18 +532,18 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9352 strings out of 478276
- 197745 string characters out of 5850490
+ 9315 strings out of 478276
+ 196880 string characters out of 5850490
  455598 words of memory out of 5000000
- 27424 multiletter control sequences out of 15000+600000
+ 27400 multiletter control sequences out of 15000+600000
  531799 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,79p,323b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (5 pages, 205838 bytes).
+Output written on paper.pdf (4 pages, 514294 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
