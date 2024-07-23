@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<robot name="milling_head">
+  <link name="baseLink">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+       <mass value="0.00000001"/>
+       <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+    </inertial>
+    <visual>
+			<material name="almost_black">
+            <color rgba="0.027450980392156862 0.050980392156862744 0.050980392156862744 1.0"/>
+      </material>
+			<geometry>
+				<sphere radius="0.05"/>
+			</geometry>
+      </visual>
+  </link>
+ <joint name="milling_trafo" type="fixed">
+		<parent link="baseLink"/>
+		<child link="tcp"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+	</joint>
+    <link name="tcp">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+       <mass value="0.00000001"/>
+       <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+    </inertial>
+	</link>
+</robot>

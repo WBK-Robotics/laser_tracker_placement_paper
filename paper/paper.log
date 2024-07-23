@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  23 JUL 2024 09:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  23 JUL 2024 09:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -499,16 +499,16 @@ LaTeX Warning: Citation `ieee_sensors' on page 1 undefined on input line 64.
 LaTeX Warning: Reference `fig:visibility' on page 1 undefined on input line 66.
 
 
-LaTeX Warning: File `visibility.png' not found on input line 69.
+LaTeX Warning: File `figures/visibility.png' not found on input line 69.
 
 
-c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:69: Package pdftex.def Error: File `visibility.png' not found: using draft setting.
+c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:69: Package pdftex.def Error: File `figures/visibility.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.69 ...phics[width=0.5\textwidth]{visibility.png}
+l.69 ...dth=0.5\textwidth]{figures/visibility.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -517,15 +517,34 @@ If that doesn't work, type  X <return>  to quit.
 
 {c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 
-LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 154.
+LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 160.
 
 
-LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 155.
+LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 161.
+
+[3]
+
+LaTeX Warning: Citation `pybullet_industrial' on page 4 undefined on input line 193.
 
 
-LaTeX Warning: Citation `pybullet_industrial' on page 3 undefined on input line 175.
+LaTeX Warning: Reference `fig:simulation' on page 4 undefined on input line 196.
 
-[3] [4] (./paper.aux)
+
+LaTeX Warning: File `figures/simulation.png' not found on input line 199.
+
+
+c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:199: Package pdftex.def Error: File `figures/simulation.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.199 ...th=0.5\textwidth]{figures/simulation.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[4] [5] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -534,18 +553,18 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9342 strings out of 478276
- 197290 string characters out of 5850490
+ 9377 strings out of 478276
+ 198556 string characters out of 5850490
  455598 words of memory out of 5000000
- 27417 multiletter control sequences out of 15000+600000
+ 27448 multiletter control sequences out of 15000+600000
  531799 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,16n,79p,323b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 98378 bytes).
+Output written on paper.pdf (5 pages, 100613 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

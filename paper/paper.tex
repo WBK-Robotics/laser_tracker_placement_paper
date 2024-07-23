@@ -66,7 +66,7 @@ Line of sight visibility and field of view visibility.
 Both  are depicted in figure \ref{fig:visibility}.
 \begin{figure}
         \centering
-        \includegraphics[width=0.5\textwidth]{visibility.png}
+        \includegraphics[width=0.5\textwidth]{figures/visibility.png}
         \caption{Visibility of a marker to a laser tracker}
         \label{fig:visibility}
 \end{figure}
@@ -130,6 +130,12 @@ This can be encoded using a simple constraint:
     h_{min} \leq p_{p_l,z} \leq h_{max}
 \end{equation}
 where $h_{min}$ and $h_{max}$ are the minimum and maximum height of the laser tracker stand.
+The laser tracker also has a limited range of measurement.
+Here we can define a constraint that the distance between the laser tracker and the marker is within the range of the laser tracker:
+\begin{equation}
+    d_{min} \leq ||p_{p_m} - p_{p_l}|| \leq d_{max}
+\end{equation}
+where $d_{min}$ and $d_{max}$ are the minimum and maximum range of the laser tracker.
 The final design space is then 9 dimensional, 6 for the marker pose and 3 for the laser tracker pose.
 
 \section{Optimization algorithm}
@@ -153,6 +159,18 @@ is the best position of the swarm in dimension $j$.
 In our case the particles are a 9 dimensional vector based on the position of the laser tracker and the pose of the marker.
 The best particle is the one that maximizes the objective function defined in equation \ref{eq:objective}.
 The hyperparameters we need to tune are collected in table \ref{tab:hyperparameters}.
+Note that the pso algorithm has no direct way to encode the constraints we defined earlier.
+Instead we can use a penalty function that penalizes any particles that violate the constraints.
+This is a common approach in optimization and is also used in the implementation of the pso algorithm in the scipy library. %TODO citation needed
+The penalty function can be defined as:
+\begin{equation}
+    p(x) =  \begin{cases}
+        0 & \text{if } x \text{ satisfies all constraints} \\
+        -\rho & \text{otherwise}
+    \end{cases}
+\end{equation}
+where $\rho$ is a large penalty factor.
+
 
 \begin{table}  %TODO anpassen
         \centering
@@ -175,6 +193,13 @@ The tricky part here is that since the manufacturing is actively manufacturing p
 For this purpose we are using the pybullet-industrial package \cite{pybullet_industrial}.
 This extension of the pybullet physics engine allows us to simulate not only the robot but also the manufacturing process.
 For the purposes of this paper the markers are implemented as a pybullet industrial endeffector obect that is attached to the robot.
+A image of the simulation environment is shown in figure \ref{fig:simulation}.
+\begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/simulation.png}
+        \caption{Simulation environment}
+        \label{fig:simulation}
+\end{figure}
 
 \section{Experiment Setup}
 
