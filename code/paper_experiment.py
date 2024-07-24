@@ -179,7 +179,8 @@ def run_experiment():
         #constraint costs
 
         #constraints keeping the height of the laser tracker betwen 0.8 and 2
-        height_constraint = np.clip(np.abs(particles[2,:]-1.03)-0.8,0,-1e6)
+        height_constraint = np.array([ -1e6 if x < 0.8 or x > 2 else 0 for x in particles[2,:]])
+
 
 
 
@@ -188,8 +189,8 @@ def run_experiment():
         cylinder_height = 0.4
         marker_positions = particles[3:6,:]
 
-        radius_constraint = np.clip(np.linalg.norm(marker_positions[:2,:],axis=0)-cylinder_radius,0,-1e6)
-        height_constraint = np.clip(np.abs(marker_positions[2,:])-cylinder_height,0,-1e6)
+        radius_constraint = np.array([ -1e6 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
+        height_constraint = np.array([ -1e6 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
 
 
 
@@ -206,19 +207,30 @@ def run_experiment():
     env = LaserTrackerEnv()
 
     n_particles = 100
-    initial_population = np.random.rand(
-        9, n_particles)*0.3*np.pi
+
+
+    initial_tracker_positions = np.random.rand(3, n_particles)*2
+    initial_marker_positions = np.random.rand(3, n_particles)*0.6
+    initial_marker_orientations = np.random.rand(3, n_particles)*2*np.pi
+
+    initial_population = np.vstack(
+        [initial_tracker_positions, initial_marker_positions, initial_marker_orientations])
+
 
 
     np.save("initial_states.npy",initial_population)
 
-    start_velocities = np.random.randn(
-        9, n_particles) * 0.5
+    start_tracker_velocities = np.random.rand(3, n_particles)*0.4
+    start_marker_velocities = np.random.rand(3, n_particles)*0.01
+    start_orientations_velocities = np.random.rand(3, n_particles)*0.1
+
+    start_velocities = np.vstack(
+        [start_tracker_velocities, start_marker_velocities, start_orientations_velocities])
 
     with console.status("Finding optimal camera placements"):
         particle_log, obj_log = particle_optimizer_log(objective_function, initial_population,
                                                         start_velocities, max_iter=100)
-    env.close()
+
     # save particle log and objective log
     np.save("particle_log.npy", particle_log)
     np.save("objective_log.npy", obj_log)
