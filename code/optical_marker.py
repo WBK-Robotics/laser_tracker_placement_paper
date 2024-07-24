@@ -112,13 +112,10 @@ class ActiveMarker(pi.EndeffectorTool):
     def set_optical_system_parameters(self,particles):
         """Convenient interface to set marker positions and orientations all in one go.
 
-        Args:
-            particles (list): List of markers where each marker is a
-                              list containing the position and orientation in a 6d vector
         """
         self.tracker_positions = [particle[:3] for particle in particles]
         self.marker_positions = [particle[3:6] for particle in particles]
-        self.marker_orientations = [particle[6:] for particle in particles]
+        self.marker_orientations = [p.getQuaternionFromEuler(particle[6:9]) for particle in particles]
 
 class TestActiveMarker(unittest.TestCase):
 

@@ -89,7 +89,10 @@ class LaserTrackerEnv:
                                  [[0, 0, 0, 1],
                                   [0, 0, 0, 1],
                                   [0, 0, 0, 1],
-                                  [0, 0, 0, 1]])
+                                  [0, 0, 0, 1]],
+                                  [[0.0, 0.0, 0.5],
+                                   [0.0, 0.0, 0.6]])
+
         self.marker.couple(self.robot,'link6')
 
         self.second_endeffector = pi.EndeffectorTool(os.path.join(os.path.dirname(__file__), 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1])
@@ -121,7 +124,7 @@ class LaserTrackerEnv:
 
         field_of_views = [np.pi/4]* len(marker_poses)
 
-        self.marker.set_optical_system_parameters(marker_poses)
+        self.marker.set_optical_system_parameters(particles)
 
         # iterate over a path and compute the visibility matrix at each step,
         # adding it to the visibility index
@@ -142,7 +145,7 @@ class LaserTrackerEnv:
             self.marker.set_tool_pose(position,orientation)
             for _ in range(100):
                 p.stepSimulation()
-            visibility_index.append(self.marker.compute_visibility(laser_tracker_positions, field_of_views))
+            visibility_index.append(self.marker.compute_visibility( field_of_views))
 
         return visibility_index
 
