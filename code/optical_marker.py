@@ -42,27 +42,27 @@ class ActiveMarker(pi.EndeffectorTool):
         self.marker_positions = marker_positions
         self.marker_orientations = marker_orientations
 
-    def compute_visibility(self, camera_positions, field_of_views):
+    def compute_visibility(self, tracker_positions, field_of_views):
         """ Computes the visibility of the markers given a laser position and marker orientations.
 
         Args:
-            camera_positions (list): List of laser tracker positions
+            tracker_positions (list): List of laser tracker positions
             field_of_views (list): List of field of views of the markers
 
         Returns:
             array: A matrix of size (number of markers, number of cameras)
                    which contains the visibility of the markers for each camera
         """
-        num_cameras = len(camera_positions)
+        num_cameras = len(tracker_positions)
         num_markers = len(self.marker_positions)
         visibility = np.zeros((num_cameras, num_markers))
 
-        current_marker_poses, current_marker_orientations = self.get_marker_poses_orientations()
+        current_marker_positions, current_marker_orientations = self.get_marker_poses_orientations()
 
         ray_start_pos = []
         ray_end_pos = []
-        for camera in camera_positions:
-            for marker_pos in current_marker_poses:
+        for camera in tracker_positions:
+            for marker_pos in current_marker_positions:
                 ray_start_pos.append(camera)
                 ray_end_pos.append(marker_pos)
 
@@ -75,13 +75,15 @@ class ActiveMarker(pi.EndeffectorTool):
                 if ray_intersections[ray_index][0] != -1:
                     continue
 
-                ray_vector = np.array(camera_positions[i]) - np.array(current_marker_poses[j])
+                ray_vector = np.array(tracker_positions[i]) - np.array(current_marker_positions[j])
 
                 marker_rotation = p.getMatrixFromQuaternion(current_marker_orientations[j])
                 marker_rotation = np.array(marker_rotation).reshape(3, 3)
                 marker_vector = marker_rotation[:, 2]
 
+
                 angle = compute_angle_between_vectors(ray_vector, marker_vector)
+
 
                 if angle < field_of_views[j] / 2:
                     visibility[i][j] = 1
@@ -135,8 +137,8 @@ class TestActiveMarker(unittest.TestCase):
                                   [0, 0, 0, 1],
                                   [0, 0, 0, 1]])
 
-        self.camera_positions = [[0., 0, 0.5], [0.0, 0, 0.6]]
-        self.field_of_views = [np.pi , np.pi, np.pi , np.pi ]
+        self.tracker_positions = [[0., 0, 0.5], [0.0, 0, 0.6]]
+        self.field_of_views = [np.pi/4 , np.pi/4, np.pi/4 , np.pi/4 ]
 
     def tearDown(self):
         """Clean up after the test."""
@@ -144,48 +146,49 @@ class TestActiveMarker(unittest.TestCase):
 
     def test_marker_within_field_of_view(self):
         """Test visibility for a marker directly in front of the laser tracker."""
-        visibility = self.tool.compute_visibility(self.camera_positions, self.field_of_views)
-        print(visibility)
+        visibility = self.tool.compute_visibility(self.tracker_positions, self.field_of_views)
         # The first camera should see all markers
         self.assertEqual(np.sum(visibility[0]), 4)
 
     def test_marker_outside_field_of_view(self):
         """Test visibility for a marker outside the field of view."""
         # Adjust marker orientation so that it is facing away from the laser tracker
-        self.tool.marker_orientations = [[0, 0, np.sin(np.pi / 4), np.cos(np.pi / 4)],
-                                         [0, 0, np.sin(np.pi / 4), np.cos(np.pi / 4)],
-                                         [0, 0, np.sin(np.pi / 4), np.cos(np.pi / 4)],
-                                         [0, 0, np.sin(np.pi / 4), np.cos(np.pi / 4)]]
+        self.tool.marker_orientations = [p.getQuaternionFromEuler([0, np.pi,0 ]),
+                                         p.getQuaternionFromEuler([0, np.pi / 4+0.1,0]),
+                                         p.getQuaternionFromEuler([0, np.pi / 4+0.1,0]),
+                                         p.getQuaternionFromEuler([0,  np.pi / 4+0.1,0])]
 
-        visibility = self.tool.compute_visibility(self.camera_positions, self.field_of_views)
+        visibility = self.tool.compute_visibility(self.tracker_positions, self.field_of_views)
+
 
         # No marker should be visible as they are all facing away
         self.assertEqual(np.sum(visibility), 0)
 
-    def test_multiple_markers_and_cameras(self):
-        """Test visibility with multiple markers and cameras with different field of views."""
-        # Adjust field of views
-        self.field_of_views = [np.pi / 4, np.pi / 4, np.pi / 4, np.pi / 4]
+    def test_line_of_sight(self):
+        """Test visibility for a marker with a clear line of sight."""
+        # Adjust marker orientation so that it is facing towards the laser tracker
+        self.tool.marker_orientations = [p.getQuaternionFromEuler([0, 0,0]),
+                                         p.getQuaternionFromEuler([0, 0,0]),
+                                         p.getQuaternionFromEuler([0, 0,0]),
+                                         p.getQuaternionFromEuler([0, 0,0])]
 
-        visibility = self.tool.compute_visibility(self.camera_positions, self.field_of_views)
+        visibility = self.tool.compute_visibility(self.tracker_positions, self.field_of_views)
+        # The first camera should see all markers
+        self.assertEqual(np.sum(visibility[0]), 4)
 
-        # Check the first camera's visibility
-        # It should see fewer markers due to the reduced field of view
-        self.assertTrue(np.sum(visibility[0]) < 4)
+        # spawn a multibody that blocks the line of sight
+        plane_dimensions = [0.2, 0.2, 0.01]
+        p.createMultiBody(0, p.createCollisionShape(p.GEOM_BOX, halfExtents=plane_dimensions),
+                          p.createVisualShape(
+                              p.GEOM_BOX, halfExtents=plane_dimensions),
+                          [0, 0, 0.2])
 
-        # Check the second camera's visibility
-        # It should also see fewer markers due to the reduced field of view
-        self.assertTrue(np.sum(visibility[1]) < 4)
+        visibility = self.tool.compute_visibility(self.tracker_positions, self.field_of_views)
+        # The first camera should no longer see the markers
 
-        # Adjust marker orientation to point towards the second camera
-        self.tool.marker_orientations = [[0, 0, 0, 1],
-                                         [0, 0, 0, 1],
-                                         [0, 0, 0, 1],
-                                         [0, 0, 0, 1]]
-        visibility = self.tool.compute_visibility(self.camera_positions, self.field_of_views)
+        self.assertEqual(np.sum(visibility[0]), 0)
 
-        # The second camera should now see some markers
-        self.assertTrue(np.sum(visibility[1]) > 0)
+
 
 if __name__ == "__main__":
     unittest.main()
