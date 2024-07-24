@@ -31,13 +31,16 @@ class LaserTrackerEnv:
         p.setTimeStep(self._time_step_length)
 
         if path is None:
-            target_position = np.array([1.9, 0, 1.03])
+            target_position = np.array([1.9, 0, 1.03])+np.array([-3.6353162, -0.6, 0])
             steps = 100
             self.path = pi.build_box_path(
                 target_position, [0.5, 0.6], 0.1, [0, 0, 0, 1], steps)
 
         else:
             self.path = path
+
+
+        self.path.draw()
 
 
         dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects')
@@ -113,7 +116,8 @@ class LaserTrackerEnv:
 
         # extract the marker poses and laser tracker positions from the particles
         laser_tracker_positions = [particle[:3] for particle in particles]
-        marker_poses = [particle[3:] for particle in particles]
+        #extract the marker poses and convert the euler angles to quaternions
+        marker_poses = [np.append(particle[3:6],p.getQuaternionFromEuler(particle[6:9])) for particle in particles]
 
         field_of_views = [np.pi/4]* len(marker_poses)
 
@@ -123,7 +127,7 @@ class LaserTrackerEnv:
         # adding it to the visibility index
 
         for _ in range(20):
-            self.marker.set_tool_pose(*self.marker.get_start_pose())
+            self.marker.set_tool_pose(*self.path.get_start_pose())
             for _ in range(50):
                 p.stepSimulation()
 
@@ -216,4 +220,5 @@ if __name__ == "__main__":
     env = LaserTrackerEnv(rendering=True)
 
     while True:
-        p.stepSimulation()
+        env.run_simulation([np.random.rand(9)*0.3*np.pi]*10)
+
