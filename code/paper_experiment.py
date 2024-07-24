@@ -173,13 +173,13 @@ def run_experiment():
     def objective_function(particles):
 
         visibility_cost = env.run_simulation(particles)
-        visibility_cost_sum = np.sum(visibility_cost,axis=1)
+        visibility_cost_sum = -1*np.sum(visibility_cost,axis=1)
 
 
         #constraint costs
 
         #constraints keeping the height of the laser tracker betwen 0.8 and 2
-        height_constraint = np.array([ -1e6 if x < 0.8 or x > 2 else 0 for x in particles[2,:]])
+        height_constraint = np.array([ 1e6 if x < 0.8 or x > 2 else 0 for x in particles[2,:]])
 
 
 
@@ -189,8 +189,8 @@ def run_experiment():
         cylinder_height = 0.4
         marker_positions = particles[3:6,:]
 
-        radius_constraint = np.array([ -1e6 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
-        height_constraint = np.array([ -1e6 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
+        radius_constraint = np.array([ 1e6 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
+        height_constraint = np.array([ 1e6 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
 
 
 
