@@ -158,9 +158,8 @@ def get_fov_from_intrinsic_matrix(intrinsic_matrix):
     return 2*np.arctan(0.5/intrinsic_matrix[0])
 
 
-class CustomEnv:
-    radius = 0.6
-    cylinder_center = np.array([-1, 0, 0.5])
+
+class LaserTrackerEnv:
 
     def __init__(self,  rendering=False, steps=20):
         if rendering is False:
@@ -176,44 +175,7 @@ class CustomEnv:
         self._time_step_length = 0.1
         p.setTimeStep(self._time_step_length)
 
-        self.number_of_steps = steps
-        self.markers, self.paths = self._setup_cell()
-        self._populate_cell()
 
-        self.stereo_camera_states = []
-        self.intrinsic_matrices = []
-        self.min_singular_value = []
-
-        self._populate_cell()
-        p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 1)
-
-    def close(self):
-        """disconnects the environment from the physics server
-        """
-        p.disconnect(self.physics_client)
-
-    def _compute_visibility(self, orientation=True, orientation_only=False):
-        """ Function that computes the visibility of each marker for each stereo camera set."""
-        flattened_states = [
-            item for sublist in self.stereo_camera_states for item in sublist]
-        quaternion_states = [[state[0], p.getQuaternionFromEuler(
-            state[1])] for state in flattened_states]
-
-        if orientation:
-            fovs = [get_fov_from_intrinsic_matrix(intrinsic_matrix)
-                    for sublist in self.intrinsic_matrices for intrinsic_matrix in sublist]
-        else:
-            fovs = None
-
-        visibility = []
-        for marker in self.markers:
-            flattened_visibility = marker.compute_visibility(
-                quaternion_states, fovs, orientation_only)
-            visibility.append(
-                reshape(self.stereo_camera_states, flattened_visibility))
-        return visibility
-
-    def _populate_cell(self):
         dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects')
         #load Objects__________________________________________________
         plane_urdf = os.path.join(dirname,'plane.urdf')
@@ -241,45 +203,31 @@ class CustomEnv:
         p.loadURDF(table_path, [-0.6, -4.6, 0.95], p.getQuaternionFromEuler([0, 0, np.pi/2]),
                    useFixedBase=True, globalScaling=0.001)
 
-    def _setup_cell(self):
-        """ Function that sets up the markers in the cell and the paths they follow
-
-        Returns:
-            list(OpticalMarker): A list of the markers as OpticalMarker objects
-            list(ToolPath): A list of the paths as ToolPath objects
-        """
-
-
-
         #load Robots__________________________________________________
         dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell')
         comau_urdf = os.path.join(dirname,'robot_descriptions', 'comau_nj290_robot.urdf')
         start_pos = np.array([-3.6353162, -0.6, 0])
         start_orientation = p.getQuaternionFromEuler([0, 0, 0])
-        robot = pi.RobotBase(comau_urdf, start_pos, start_orientation)
+        self.robot = pi.RobotBase(comau_urdf, start_pos, start_orientation)
         start_pos2 = np.array([-0.12, -2.59, 0])
         start_orientation2 = p.getQuaternionFromEuler([0, 0, np.pi])
-        robot2 = pi.RobotBase(comau_urdf, start_pos2, start_orientation2)
+        self.second_robot = pi.RobotBase(comau_urdf, start_pos2, start_orientation2)
 
 
-        marker = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
+        self.marker = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
                                  [[0.1, 0.1, 0.1],
                                   [0.1, -0.1, 0.1],
                                   [-0.1, 0.1, 0.1],
                                   [-0.1, -0.1, 0.1]])
-        marker.couple
+        self.marker.couple(self.robot)
 
-        second_endeffector = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
+        self.second_endeffector = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
                                     [[0.1, 0.1, 0.1],
                                     [0.1, -0.1, 0.1],
                                     [-0.1, 0.1, 0.1],
                                     [-0.1, -0.1, 0.1]])
 
-        second_endeffector.couple(robot2, [0, 0, 0], [0, 0, 0, 1])
-
-        # TODO define end effectors, and paths to return
-
-        return [marker,second_endeffector], [upward]
+        self.second_endeffector.couple(self.second_robot, [0, 0, 0], [0, 0, 0, 1])
 
     def reset(self):
         """Resets the environment to the initial state
@@ -287,37 +235,14 @@ class CustomEnv:
         self.robot.reset_robot(*self.robot.get_world_state())
         self.second_robot.reset_robot(*self.second_robot.get_world_state())
 
-    def _costs(self):
-        """Returns a cost matrix for each camera and marker.
-        """
-
-        # list of the visibility of each marker for each stereo camera system
-        visibility = self._compute_visibility(True)
-
-        camera_visibilities = [np.array(
-            [np.sum(vis) for vis in camera_visibility]) for camera_visibility in visibility]
-
-        return -1*np.sum(camera_visibilities, axis=0) - [0.1*value for value in self.min_singular_value]
-
-    def run_simulation(self):
-        """ Runs the environment in which the markers follow the paths and the cameras observe them.
-            It then returns the cost of each timestep.
+    def run_simulation(self,particles):
+        """ Runs the environment  given a set of particles describing the laser tracker positions
+            and marker poses. It then returns the cost for each timestep and particle.
         """
         costs = []
         self.reset()
 
-        for _ in range(30):
-            [marker.set_tool_pose(*path.get_start_pose())
-             for marker, path in zip(self.markers, self.paths)]
-
-        for marker_positions in zip(*self.paths):
-            for i in range(len(self.markers)):
-                self.markers[i].set_tool_pose(
-                    marker_positions[i][0], marker_positions[i][1])
-            for _ in range(30):
-                p.stepSimulation()
-
-            costs.append(self._costs())
+        # implement the logic of what happens during the simulation
         return costs
 
     def set_timestep_length(self, time_step_length):
@@ -335,42 +260,7 @@ class CustomEnv:
         """
         return self._time_step_length
 
-    def configure_cameras(self, camera_states, intrinsic_matrices):
-        """Configures the cameras in the environment and
-           caclulating the proection error of the camera setups.
-        """
-        if len(intrinsic_matrices) != len(camera_states):
-            raise ValueError(
-                "Number of cameras ("+str(len(camera_states))+") and number of FOVs ("+str(len(intrinsic_matrices))+") must be the same")
 
-        self.stereo_camera_states = camera_states
-
-        self.intrinsic_matrices = intrinsic_matrices
-
-        min_singular_value = []
-        for i, stereo_state in enumerate(self.stereo_camera_states):
-            camera_matrices = []
-            for j, state in enumerate(stereo_state):
-                extrinsic_matrix = compute_extrinsic_matrix(state)
-
-                intrinsic_matrix = self.intrinsic_matrices[i][j]
-
-                intrinsic_matrix = np.array(intrinsic_matrix).reshape(3, 3)
-
-                # add zero column to intrinsic matrix to make it 3x4 for multiplication
-                padded_intrinsics = np.hstack(
-                    (intrinsic_matrix, np.zeros((3, 1))))
-                camera_matrices.append(
-                    np.matmul(padded_intrinsics, extrinsic_matrix))
-
-            # calculate the error component describing the overal stereo camera setup
-            # \sigma_{min}(A+\Delta A)
-            triangulation_matrix = np.vstack(camera_matrices)
-            min_singular_value.append(np.linalg.svd(
-                triangulation_matrix)[1][-1])
-
-            self.min_singular_value = min_singular_value
-        return min_singular_value
 
 
 
@@ -432,7 +322,7 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    env = CustomEnv(rendering=True)
+    env = LaserTrackerEnv(rendering=True)
 
     while True:
         p.stepSimulation()
