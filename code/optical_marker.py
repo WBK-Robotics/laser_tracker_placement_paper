@@ -59,18 +59,32 @@ class ActiveMarker(pi.EndeffectorTool):
 
         current_marker_poses, current_marker_orientations = self.get_marker_poses_orientations()
 
-        for i in range(num_markers):
-            for j in range(num_cameras):
-                ray_vector = np.array(current_marker_poses[i]) - np.array(camera_positions[j])
+        ray_start_pos = []
+        ray_end_pos = []
+        for camera in camera_positions:
+            for marker_pos in current_marker_poses:
+                ray_start_pos.append(camera)
+                ray_end_pos.append(marker_pos)
 
-                marker_rotation = p.getMatrixFromQuaternion(current_marker_orientations[i])
+        ray_intersections = p.rayTestBatch(ray_start_pos, ray_end_pos)
+
+        for i in range(num_cameras):
+            for j in range(num_markers):
+                ray_index = i * num_markers + j
+                # Check if there is a clear line of sight
+                if ray_intersections[ray_index][0] != -1:
+                    continue
+
+                ray_vector = np.array(current_marker_poses[j]) - np.array(camera_positions[i])
+
+                marker_rotation = p.getMatrixFromQuaternion(current_marker_orientations[j])
                 marker_rotation = np.array(marker_rotation).reshape(3, 3)
                 marker_vector = marker_rotation[:, 2]
 
                 angle = compute_angle_between_vectors(ray_vector, marker_vector)
 
-                if angle < field_of_views[i] / 2:
-                    visibility[j][i] = 1
+                if angle < field_of_views[j] / 2:
+                    visibility[i][j] = 1
 
         return visibility
 
