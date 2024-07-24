@@ -175,11 +175,12 @@ def run_experiment():
         visibility_cost = env.run_simulation(particles)
         visibility_cost_sum = -1*np.sum(visibility_cost,axis=1)
 
+        #TODO add cost that keeps the tracker as close as possible to the surface of the robot
 
         #constraint costs
 
         #constraints keeping the height of the laser tracker betwen 0.8 and 2
-        height_constraint = np.array([ 1e6 if x < 0.8 or x > 2 else 0 for x in particles[2,:]])
+        height_constraint = np.array([ 1e2 if x < 0.8 or x > 2 else 0 for x in particles[2,:]])
 
 
 
@@ -189,8 +190,8 @@ def run_experiment():
         cylinder_height = 0.4
         marker_positions = particles[3:6,:]
 
-        radius_constraint = np.array([ 1e6 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
-        height_constraint = np.array([ 1e6 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
+        radius_constraint = np.array([ 1e2 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
+        height_constraint = np.array([ 1e2 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
 
 
 
@@ -229,7 +230,7 @@ def run_experiment():
 
     with console.status("Finding optimal camera placements"):
         particle_log, obj_log = particle_optimizer_log(objective_function, initial_population,
-                                                        start_velocities, max_iter=100)
+                                                        start_velocities, max_iter=30)
 
     # save particle log and objective log
     np.save("particle_log.npy", particle_log)
