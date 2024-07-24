@@ -5,6 +5,8 @@ import pybullet as p
 import pybullet_industrial as pi
 
 
+from rich.console import Console
+
 from optical_marker import ActiveMarker
 from particle_optimizer import particle_optimizer, particle_optimizer_log
 
@@ -118,7 +120,7 @@ class LaserTrackerEnv:
         visibility_index = []
         self.reset()
 
-        self.marker.set_optical_system_parameters(particles)
+        self.marker.set_optical_system_parameters(particles.T)
 
         # iterate over a path and compute the visibility matrix at each step,
         # adding it to the visibility index
@@ -141,6 +143,9 @@ class LaserTrackerEnv:
                 p.stepSimulation()
             visibility_index.append(self.marker.compute_visibility( ))
 
+        visibility_index = np.array(visibility_index)
+
+        visibility_index = visibility_index.T
         return visibility_index
 
     def set_timestep_length(self, time_step_length):
@@ -164,39 +169,41 @@ class LaserTrackerEnv:
 
 
 def run_experiment():
-
+    console = Console()
     def objective_function(particles):
 
-        # divide the particles into list of camera states
-        camera_particles = np.split(particles, len(particles)/6, axis=0)
+        visibility_cost = env.run_simulation(particles)
+        visibility_cost_sum = np.sum(visibility_cost,axis=1)
 
-        camera_states = []
-        for i in range(len(camera_particles[0][0])):
-            camera_state = [[state[:3, i], state[3:, i]]
-                            for state in camera_particles]
-            camera_states.append(camera_state)
 
-        focal_length = 0.1
-        intrinsic_matrix = [0.0]*9
-        intrinsic_matrix[0*3+0] = focal_length
-        intrinsic_matrix[1*3+1] = focal_length
-        intrinsic_matrix[2*3+2] = float(1)
-        intrinsic_matrix = tuple(intrinsic_matrix)
+        #constraint costs
 
-        env.configure_cameras(
-            camera_states, [[intrinsic_matrix]*len(camera_particles)]*len(particles[0]))
-        costs = env.run_simulation()
-        costs = np.sum(costs, axis=0)
+        #constraints keeping the height of the laser tracker betwen 0.8 and 2
+        height_constraint = np.clip(np.abs(particles[2,:]-1.03)-0.8,0,-1e6)
 
-        # penalize the cameras that are below the ground
-        for i, stereo_cameras in enumerate(camera_states):
-            for camera in stereo_cameras:
-                if camera[0][2] < 0:
-                    costs[i] += 1000
+
+
+        #constraint keeping the marker position within a cylinder of given radius and height
+        cylinder_radius = 0.5
+        cylinder_height = 0.4
+        marker_positions = particles[3:6,:]
+
+        radius_constraint = np.clip(np.linalg.norm(marker_positions[:2,:],axis=0)-cylinder_radius,0,-1e6)
+        height_constraint = np.clip(np.abs(marker_positions[2,:])-cylinder_height,0,-1e6)
+
+
+
+
+
+
+        costs = visibility_cost_sum+ height_constraint + radius_constraint + height_constraint
+
+        print(costs)
+
         return costs
 
 
-    env = CustomEnv()
+    env = LaserTrackerEnv()
 
     n_particles = 100
     initial_population = np.random.rand(
@@ -220,9 +227,5 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    env = LaserTrackerEnv(rendering=True)
-
-    particles = [[-4,-1,3,0,0,0.3,0,0,0],[-3,-3,1.2,0,-0.3,0.1,0,0,0]]
-    while True:
-        env.run_simulation(particles)
+    run_experiment()
 
