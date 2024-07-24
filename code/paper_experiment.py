@@ -31,8 +31,8 @@ class LaserTrackerEnv:
         p.setTimeStep(self._time_step_length)
 
         if path is None:
-            target_position = np.array([1.9, 0, 1.03])+np.array([-3.6353162, -0.6, 0])
-            steps = 100
+            target_position = np.array([1.6, 0, 1.03])+np.array([-3.6353162, -0.6, 0])
+            steps = 30
             self.path = pi.build_box_path(
                 target_position, [0.5, 0.6], 0.1, [0, 0, 0, 1], steps)
 
@@ -90,11 +90,11 @@ class LaserTrackerEnv:
                                   [0, 0, 0, 1],
                                   [0, 0, 0, 1],
                                   [0, 0, 0, 1]])
-        self.marker.couple(self.robot)
+        self.marker.couple(self.robot,'link6')
 
         self.second_endeffector = pi.EndeffectorTool(os.path.join(os.path.dirname(__file__), 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1])
 
-        self.second_endeffector.couple(self.second_robot)
+        self.second_endeffector.couple(self.second_robot,'link6')
 
         p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 1)
 
@@ -125,16 +125,22 @@ class LaserTrackerEnv:
 
         # iterate over a path and compute the visibility matrix at each step,
         # adding it to the visibility index
-
         for _ in range(20):
-            self.marker.set_tool_pose(*self.path.get_start_pose())
-            for _ in range(50):
-                p.stepSimulation()
+            joint_angles ={
+                'q1': -0.1910351778338952,
+                'q2': 0.6219868844708127,
+                'q3': -2.058245174714272,
+                'q4': -0.21271062205029018,
+                'q5': -2.1816615644867423,
+                'q6': -0.09411935083551597
+            }
+            self.robot.set_joint_position(joint_angles)
+            p.stepSimulation()
 
 
         for position,orientation,_ in self.path:
             self.marker.set_tool_pose(position,orientation)
-            for _ in range(10):
+            for _ in range(100):
                 p.stepSimulation()
             visibility_index.append(self.marker.compute_visibility(laser_tracker_positions, field_of_views))
 
@@ -220,5 +226,5 @@ if __name__ == "__main__":
     env = LaserTrackerEnv(rendering=True)
 
     while True:
-        env.run_simulation([np.random.rand(9)*0.3*np.pi]*10)
+        env.run_simulation([[-4,-1,3,0,0,0,0,0,0],[-3,-3,1.2,0,0,0,0,0,0]])
 

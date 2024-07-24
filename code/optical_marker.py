@@ -67,11 +67,19 @@ class ActiveMarker(pi.EndeffectorTool):
                 ray_end_pos.append(marker_pos)
 
         ray_intersections = p.rayTestBatch(ray_start_pos, ray_end_pos)
+        # draw each ray using p.addUserDebugLine
+        for i in range(len(ray_start_pos)):
+            for j in range(len(ray_end_pos)):
+                if ray_intersections[i][0] != -1:
+                    p.addUserDebugLine(ray_start_pos[i], ray_end_pos[j], [0, 0, 1], 1)
+                else:
+                    p.addUserDebugLine(ray_start_pos[i], ray_end_pos[j], [1, 0, 0], 1)
+
 
         for i in range(num_cameras):
             for j in range(num_markers):
                 ray_index = i * num_markers + j
-                # Check if there is a clear line of sight
+
                 if ray_intersections[ray_index][0] != -1:
                     continue
 
