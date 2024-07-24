@@ -75,7 +75,7 @@ class ActiveMarker(pi.EndeffectorTool):
                 if ray_intersections[ray_index][0] != -1:
                     continue
 
-                ray_vector = np.array(current_marker_poses[j]) - np.array(camera_positions[i])
+                ray_vector = np.array(camera_positions[i]) - np.array(current_marker_poses[j])
 
                 marker_rotation = p.getMatrixFromQuaternion(current_marker_orientations[j])
                 marker_rotation = np.array(marker_rotation).reshape(3, 3)
