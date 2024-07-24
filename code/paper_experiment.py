@@ -226,5 +226,5 @@ if __name__ == "__main__":
     env = LaserTrackerEnv(rendering=True)
 
     while True:
-        env.run_simulation([[-4,-1,3,0,0,0,0,0,0],[-3,-3,1.2,0,0,0,0,0,0]])
+        env.run_simulation([[-4,-1,3,0,0,0.3,0,0,0],[-3,-3,1.2,0,-0.3,0.1,0,0,0]])
 
