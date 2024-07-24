@@ -176,6 +176,8 @@ def run_experiment():
         visibility_cost_sum = -1*np.sum(visibility_cost,axis=1)
 
         #TODO add cost that keeps the tracker as close as possible to the surface of the robot
+        marker_positions = particles[3:6,:]
+        deviation_cost = np.linalg.norm(marker_positions, axis=0)
 
         #constraint costs
 
@@ -188,7 +190,6 @@ def run_experiment():
         #constraint keeping the marker position within a cylinder of given radius and height
         cylinder_radius = 0.5
         cylinder_height = 0.4
-        marker_positions = particles[3:6,:]
 
         radius_constraint = np.array([ 1e2 if np.linalg.norm(marker_positions[:2,i]) > cylinder_radius else 0 for i in range(marker_positions.shape[1])])
         height_constraint = np.array([ 1e2 if marker_positions[2,i] < 0 or marker_positions[2,i] > cylinder_height else 0 for i in range(marker_positions.shape[1])])
@@ -198,7 +199,7 @@ def run_experiment():
 
 
 
-        costs = visibility_cost_sum+ height_constraint + radius_constraint + height_constraint
+        costs = visibility_cost_sum+ deviation_cost+height_constraint + radius_constraint + height_constraint
 
         print(costs)
 

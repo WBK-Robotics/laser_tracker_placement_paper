@@ -120,7 +120,8 @@ This can be encoded using a cylindrical constraint on the position of the marker
 \end{equation}
 where $r$ is the radius of the cylinder and $h$ is the height of the cylinder.
 The marker of course also cant be within the mesh of the manufacturing system, but since this would result in a line of sight visibility of 0 we do not need to encode this constraint explicitly.
-
+If we still want the marker close to the surface of the system such as when mounting them magnetically we can add a penalty function to the objective function that penalizes markers that are too far away from the flange.
+This will naturally force the optimizer to place the marker close to the surface of the manufacturing system.
 
 The pose of the laser tracker is in reality also defined by a transformation matrix $T_{l}$.
 However since the laser tracker has a spherical measurment volume we only need to define the position of the laser tracker $p_{p_l}$, which is a three dimensional vector.
