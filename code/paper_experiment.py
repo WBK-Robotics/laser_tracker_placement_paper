@@ -5,7 +5,7 @@ import pybullet as p
 import pybullet_industrial as pi
 
 
-from optical_marker import OpticalMarker
+from optical_marker import ActiveMarker
 from particle_optimizer import particle_optimizer, particle_optimizer_log
 
 
@@ -15,7 +15,7 @@ from particle_optimizer import particle_optimizer, particle_optimizer_log
 
 class LaserTrackerEnv:
 
-    def __init__(self,  rendering=False, steps=20):
+    def __init__(self,  rendering=False, steps=20,path=None):
         if rendering is False:
             self.physics_client = p.connect(p.DIRECT)
         else:
@@ -23,11 +23,21 @@ class LaserTrackerEnv:
                                             '--background_color_green=1 ' +
                                             '--background_color_blue=1')
             p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
+
         p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 0)
         p.setGravity(0, 0, -9.81)
         p.setPhysicsEngineParameter(numSolverIterations=1000)
         self._time_step_length = 0.1
         p.setTimeStep(self._time_step_length)
+
+        if path is None:
+            target_position = np.array([1.9, 0, 1.03])
+            steps = 100
+            self.path = pi.build_box_path(
+                target_position, [0.5, 0.6], 0.1, [0, 0, 0, 1], steps)
+
+        else:
+            self.path = path
 
 
         dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects')
@@ -68,20 +78,22 @@ class LaserTrackerEnv:
         self.second_robot = pi.RobotBase(comau_urdf, start_pos2, start_orientation2)
 
 
-        self.marker = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
-                                 [[0.1, 0.1, 0.1],
+        self.marker = ActiveMarker(os.path.join(os.path.dirname(__file__), 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
+                                  [[0.1, 0.1, 0.1],
                                   [0.1, -0.1, 0.1],
                                   [-0.1, 0.1, 0.1],
-                                  [-0.1, -0.1, 0.1]])
+                                  [-0.1, -0.1, 0.1]],
+                                 [[0, 0, 0, 1],
+                                  [0, 0, 0, 1],
+                                  [0, 0, 0, 1],
+                                  [0, 0, 0, 1]])
         self.marker.couple(self.robot)
 
-        self.second_endeffector = OpticalMarker(os.path.join(dirname, 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1],
-                                    [[0.1, 0.1, 0.1],
-                                    [0.1, -0.1, 0.1],
-                                    [-0.1, 0.1, 0.1],
-                                    [-0.1, -0.1, 0.1]])
+        self.second_endeffector = pi.EndeffectorTool(os.path.join(os.path.dirname(__file__), 'marker.urdf'), [0, 0, 0], [0, 0, 0, 1])
 
-        self.second_endeffector.couple(self.second_robot, [0, 0, 0], [0, 0, 0, 1])
+        self.second_endeffector.couple(self.second_robot)
+
+        p.configureDebugVisualizer(p.COV_ENABLE_RENDERING, 1)
 
     def reset(self):
         """Resets the environment to the initial state
@@ -89,15 +101,40 @@ class LaserTrackerEnv:
         self.robot.reset_robot(*self.robot.get_world_state())
         self.second_robot.reset_robot(*self.second_robot.get_world_state())
 
+
+
+
     def run_simulation(self,particles):
         """ Runs the environment  given a set of particles describing the laser tracker positions
             and marker poses. It then returns the cost for each timestep and particle.
         """
-        costs = []
+        visibility_index = []
         self.reset()
 
-        # implement the logic of what happens during the simulation
-        return costs
+        # extract the marker poses and laser tracker positions from the particles
+        laser_tracker_positions = [particle[:3] for particle in particles]
+        marker_poses = [particle[3:] for particle in particles]
+
+        field_of_views = [np.pi/4]* len(marker_poses)
+
+        self.marker.set_optical_system_parameters(marker_poses)
+
+        # iterate over a path and compute the visibility matrix at each step,
+        # adding it to the visibility index
+
+        for _ in range(20):
+            self.marker.set_tool_pose(*self.marker.get_start_pose())
+            for _ in range(50):
+                p.stepSimulation()
+
+
+        for position,orientation,_ in self.path:
+            self.marker.set_tool_pose(position,orientation)
+            for _ in range(10):
+                p.stepSimulation()
+            visibility_index.append(self.marker.compute_visibility(laser_tracker_positions, field_of_views))
+
+        return visibility_index
 
     def set_timestep_length(self, time_step_length):
         """Sets the timestep between subsequent step function calls.
