@@ -91,7 +91,8 @@ class LaserTrackerEnv:
                                   [0, 0, 0, 1],
                                   [0, 0, 0, 1]],
                                   [[0.0, 0.0, 0.5],
-                                   [0.0, 0.0, 0.6]])
+                                   [0.0, 0.0, 0.6]],
+                                   np.pi/4)
 
         self.marker.couple(self.robot,'link6')
 
@@ -117,13 +118,6 @@ class LaserTrackerEnv:
         visibility_index = []
         self.reset()
 
-        # extract the marker poses and laser tracker positions from the particles
-        laser_tracker_positions = [particle[:3] for particle in particles]
-        #extract the marker poses and convert the euler angles to quaternions
-        marker_poses = [np.append(particle[3:6],p.getQuaternionFromEuler(particle[6:9])) for particle in particles]
-
-        field_of_views = [np.pi/4]* len(marker_poses)
-
         self.marker.set_optical_system_parameters(particles)
 
         # iterate over a path and compute the visibility matrix at each step,
@@ -145,7 +139,7 @@ class LaserTrackerEnv:
             self.marker.set_tool_pose(position,orientation)
             for _ in range(100):
                 p.stepSimulation()
-            visibility_index.append(self.marker.compute_visibility( field_of_views))
+            visibility_index.append(self.marker.compute_visibility( ))
 
         return visibility_index
 
@@ -228,6 +222,7 @@ def run_experiment():
 if __name__ == "__main__":
     env = LaserTrackerEnv(rendering=True)
 
+    particles = [[-4,-1,3,0,0,0.3,0,0,0],[-3,-3,1.2,0,-0.3,0.1,0,0,0]]
     while True:
-        env.run_simulation([[-4,-1,3,0,0,0.3,0,0,0],[-3,-3,1.2,0,-0.3,0.1,0,0,0]])
+        env.run_simulation(particles)
 

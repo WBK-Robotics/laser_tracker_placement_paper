@@ -37,24 +37,24 @@ class ActiveMarker(pi.EndeffectorTool):
     """
 
     def __init__(self, urdf_model: str, start_position, start_orientation, marker_positions,
-                 marker_orientations, tracker_positions, coupled_robots=None, tcp_frame=None, connector_frames=None):
+                 marker_orientations, tracker_positions,
+                 marker_fov,coupled_robots=None, tcp_frame=None, connector_frames=None):
         super().__init__(urdf_model, start_position, start_orientation,
                          coupled_robots, tcp_frame, connector_frames)
 
         self.marker_positions = marker_positions
         self.marker_orientations = marker_orientations
         self.tracker_positions = tracker_positions
+        self.marker_fov = marker_fov
 
-    def compute_visibility(self, field_of_views):
+    def compute_visibility(self):
         """ Computes the visibility of the markers given a laser position and marker orientations.
-
-        Args:
-            field_of_views (list): List of field of views of the markers
 
         Returns:
             list: A list which contains the visibility of each marker for its corresponding tracker
         """
         num_markers = len(self.marker_positions)
+        field_of_views = [self.marker_fov]*num_markers
         visibility = np.zeros(num_markers)
 
         current_marker_positions, current_marker_orientations = self.get_marker_poses_orientations()
@@ -131,9 +131,9 @@ class TestActiveMarker(unittest.TestCase):
                                  [[0, 0, 0, 1],
                                   [0, 0, 0, 1]],
                                   [[0.0, 0.0, 0.5],
-                                   [0.0, 0.0, 0.6]])
+                                   [0.0, 0.0, 0.6]],
+                                   np.pi/4)
 
-        self.field_of_views = [np.pi/4 , np.pi/4]
 
     def tearDown(self):
         """Clean up after the test."""
@@ -143,7 +143,7 @@ class TestActiveMarker(unittest.TestCase):
         """Test visibility for a marker directly in front of the laser tracker."""
         self.tool.marker_orientations = [p.getQuaternionFromEuler([0, 0,0]),
                                             p.getQuaternionFromEuler([0, 0,0])]
-        visibility = self.tool.compute_visibility( self.field_of_views)
+        visibility = self.tool.compute_visibility( )
         # The first camera should see all markers
         print("visibility: ",visibility)
         self.assertEqual(np.sum(visibility), 2)
@@ -154,7 +154,7 @@ class TestActiveMarker(unittest.TestCase):
         self.tool.marker_orientations = [p.getQuaternionFromEuler([0, np.pi,0 ]),
                                          p.getQuaternionFromEuler([0, np.pi / 4+0.1,0])]
 
-        visibility = self.tool.compute_visibility(self.field_of_views)
+        visibility = self.tool.compute_visibility()
 
 
         # No marker should be visible as they are all facing away
@@ -173,7 +173,7 @@ class TestActiveMarker(unittest.TestCase):
                               p.GEOM_BOX, halfExtents=plane_dimensions),
                           [0, 0, 0.2])
 
-        visibility = self.tool.compute_visibility( self.field_of_views)
+        visibility = self.tool.compute_visibility()
         # The first camera should no longer see the markers
 
         self.assertEqual(np.sum(visibility[0]), 0)
