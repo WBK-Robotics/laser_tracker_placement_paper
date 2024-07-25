@@ -84,6 +84,21 @@ class ActiveMarker(pi.EndeffectorTool):
 
         return visibility
 
+    def compute_distance(self):
+        """computes the distance betwen the marker and the tracker
+
+        Returns:
+            list: A list which contains the distance of each marker for its corresponding tracker
+        """
+        num_markers = len(self.marker_positions)
+        distances = np.zeros(num_markers)
+        current_marker_positions, current_marker_orientations = self.get_marker_poses_orientations()
+        for i in range(num_markers):
+            ray_start_pos = self.tracker_positions[i]
+            ray_end_pos = current_marker_positions[i]
+            distances[i] = np.linalg.norm(np.array(ray_start_pos) - np.array(ray_end_pos))
+        return distances
+
     def get_marker_poses_orientations(self):
         """ Returns the positions and orientations of the markers in the world frame.
 

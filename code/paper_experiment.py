@@ -124,6 +124,7 @@ class LaserTrackerEnv:
             and marker poses. It then returns the cost for each timestep and particle.
         """
         visibility_index = []
+        distance_index = []
         self.reset()
 
         self.marker.set_optical_system_parameters(particles.T)
@@ -151,11 +152,14 @@ class LaserTrackerEnv:
             for _ in range(100):
                 p.stepSimulation()
             visibility_index.append(self.marker.compute_visibility( ))
+            distance_index.append(self.marker.compute_distance())
 
         visibility_index = np.array(visibility_index)
+        distance_index = np.array(distance_index)
 
         visibility_index = visibility_index.T
-        return visibility_index
+        distance_index = distance_index
+        return visibility_index, distance_index
 
     def set_timestep_length(self, time_step_length):
         """Sets the timestep between subsequent step function calls.
@@ -181,12 +185,19 @@ def run_experiment():
     console = Console()
     def objective_function(particles):
 
-        visibility_cost = env.run_simulation(particles)
+        visibility_cost,distance_cost = env.run_simulation(particles)
         visibility_cost_sum = -1*np.sum(visibility_cost,axis=1)
 
-        #TODO add cost that keeps the tracker as close as possible to the surface of the robot
+        # cost that keeps the tracker as close as possible to the surface of the robot
         marker_positions = particles[3:6,:]
         deviation_cost = np.linalg.norm(marker_positions, axis=0)
+
+        # cost that keeps the distance cost as low as possible so long as it is not below 1.2
+        distance_cost = np.sum(distance_cost,axis=0)/len(distance_cost)
+
+        distance_cost = np.array([1e2 if x < 1.2 else x for x in distance_cost])
+
+
 
         #constraint costs
 
@@ -208,7 +219,7 @@ def run_experiment():
 
 
 
-        costs = visibility_cost_sum+ deviation_cost+height_constraint + radius_constraint + height_constraint
+        costs = visibility_cost_sum+ +distance_cost+ deviation_cost+height_constraint + radius_constraint + height_constraint
 
         print(costs)
 
@@ -220,7 +231,7 @@ def run_experiment():
     n_particles = 100
 
 
-    initial_tracker_positions = np.random.rand(3, n_particles)*2
+    initial_tracker_positions = np.random.rand(3, n_particles)*3
     initial_marker_positions = np.random.rand(3, n_particles)*0.6
     initial_marker_orientations = np.random.rand(3, n_particles)*2*np.pi
 
@@ -231,7 +242,7 @@ def run_experiment():
 
     np.save("initial_states.npy",initial_population)
 
-    start_tracker_velocities = np.random.rand(3, n_particles)*0.4
+    start_tracker_velocities = np.random.rand(3, n_particles)*2
     start_marker_velocities = np.random.rand(3, n_particles)*0.01
     start_orientations_velocities = np.random.rand(3, n_particles)*0.1
 
@@ -240,7 +251,7 @@ def run_experiment():
 
     with console.status("Finding optimal camera placements"):
         particle_log, obj_log = particle_optimizer_log(objective_function, initial_population,
-                                                        start_velocities, max_iter=30)
+                                                        start_velocities, max_iter=100)
 
     # save particle log and objective log
     np.save("particle_log.npy", particle_log)
@@ -250,10 +261,10 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    #run_experiment()
-    env = LaserTrackerEnv(rendering=True)
+    run_experiment()
+    #env = LaserTrackerEnv(rendering=True)
 
-    while True:
-        env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.2,0,-0.3,0.1,0,0,0]]).T)
+    #while True:
+    #    env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.2,0,-0.3,0.1,0,0,0]]).T)
 
 

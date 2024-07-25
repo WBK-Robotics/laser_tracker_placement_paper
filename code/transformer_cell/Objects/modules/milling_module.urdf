@@ -23,9 +23,9 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="500 700 -500"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-	 	<box size="1200 1200 1000"/>
+	 	<mesh filename="mesh/Fraesmodul_dec.stl"/>
       </geometry>
     </collision>
   </link>
