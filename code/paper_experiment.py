@@ -33,16 +33,22 @@ class LaserTrackerEnv:
         p.setTimeStep(self._time_step_length)
 
         if path is None:
-            target_position = np.array([1.6, 0, 1.03])+np.array([-3.6353162, -0.6, 0])
+            target_position = np.array([-2.4,-3,0.95])+np.array([-0.6,0.45,0.4])
             steps = 30
             self.path = pi.build_box_path(
                 target_position, [0.5, 0.6], 0.1, [0, 0, 0, 1], steps)
+            new_orientation = p.getQuaternionFromEuler([np.pi,0,0])
+            #created a array with dimension steps x 4
+            orientation_array = np.array([new_orientation for _ in range(steps)])
+            self.path.orientations=orientation_array.T
 
         else:
             self.path = path
 
 
         self.path.draw()
+
+        self.second_path = pi.linear_interpolation([-1.2, -0.6, 0.95], [-2.6, -3.4, 1.2], steps)
 
 
         dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects')
@@ -65,11 +71,11 @@ class LaserTrackerEnv:
                    useFixedBase=True, globalScaling=0.001)
 
         mm_path = os.path.join(dirname,  'modules', 'milling_module.urdf')
-        p.loadURDF(mm_path, [-0.6,-4.6,0.95], p.getQuaternionFromEuler([0,0,np.pi/2]),
+        p.loadURDF(mm_path, [-2.4,-3,0.95], p.getQuaternionFromEuler([0,0,np.pi/2]),
                    useFixedBase=True, globalScaling=0.001)
 
         table_path = os.path.join(dirname,  'modules', 'table.urdf')
-        p.loadURDF(table_path, [-0.6, -4.6, 0.95], p.getQuaternionFromEuler([0, 0, np.pi/2]),
+        p.loadURDF(table_path, [-1.2, -0.6, 0.95], p.getQuaternionFromEuler([0, 0, np.pi/2]),
                    useFixedBase=True, globalScaling=0.001)
 
         #load Robots__________________________________________________
@@ -134,11 +140,14 @@ class LaserTrackerEnv:
                 'q6': -0.09411935083551597
             }
             self.robot.set_joint_position(joint_angles)
+            self.second_robot.set_joint_position(joint_angles)
             p.stepSimulation()
 
 
-        for position,orientation,_ in self.path:
-            self.marker.set_tool_pose(position,orientation)
+        for i in range(len(self.path.positions[0])):
+
+            self.marker.set_tool_pose(self.path.positions[:,i],self.path.orientations[:,i])
+            self.second_endeffector.set_tool_pose(self.second_path.positions[:,i],self.second_path.orientations[:,i])
             for _ in range(100):
                 p.stepSimulation()
             visibility_index.append(self.marker.compute_visibility( ))
@@ -241,5 +250,10 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    run_experiment()
+    #run_experiment()
+    env = LaserTrackerEnv(rendering=True)
+
+    while True:
+        env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.2,0,-0.3,0.1,0,0,0]]).T)
+
 

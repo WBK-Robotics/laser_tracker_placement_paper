@@ -57,7 +57,7 @@ if __name__ == '__main__':
     p.loadURDF(dmg_path, [0,0,0], p.getQuaternionFromEuler([math.pi/2,0,0]), useFixedBase=True, globalScaling=0.001)
     mm_path = os.path.join(dirname,
                              'Objects', 'modules', 'milling_module.urdf')
-    p.loadURDF(mm_path, [-0.6,-4.6,0.95], p.getQuaternionFromEuler([0,0,math.pi/2]), useFixedBase=True, globalScaling=0.001)
+    p.loadURDF(mm_path, [-3,-2.6,0.95], p.getQuaternionFromEuler([0,0,math.pi/2]), useFixedBase=True, globalScaling=0.001)
     table_path = os.path.join(dirname,
                            'Objects', 'modules', 'table.urdf')
     p.loadURDF(table_path, [-0.6, -4.6, 0.95], p.getQuaternionFromEuler([0, 0, math.pi/2]), useFixedBase=True,
