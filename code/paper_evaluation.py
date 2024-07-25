@@ -24,7 +24,7 @@ plt.figure(figsize=(3, 2))
 sns.lineplot(x=range(objective_log.shape[0]), y=mean_values, color=kit_deep_blue, label='Mean')
 
 # Plot the hull curve
-plt.fill_between(range(objective_log.shape[0]), lower_boundary, upper_boundary, color=see_through_blue, label='5th-95th percentile range')
+plt.fill_between(range(objective_log.shape[0]), lower_boundary, upper_boundary, color=see_through_blue, label='particle range')
 
 plt.xlabel("Solver iteration")
 plt.ylabel("Objective function")

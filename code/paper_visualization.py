@@ -1,8 +1,58 @@
+import numpy as np
+import os
+import tkinter as tk
+from tkinter import ttk
 from paper_experiment import LaserTrackerEnv
 import pybullet as p
 import pybullet_industrial as pi
-import numpy as np
-import os
+
+class ParticleSelectorApp:
+    def __init__(self, master, particles, objective_log, env, threshold=0.01):
+        self.master = master
+        self.particles = particles
+        print(self.particles)
+        self.objective_log = objective_log
+        print(self.objective_log)
+        self.env = env
+
+        # Find the best objective value
+        min_objective_value = np.min(objective_log[-1])
+
+        # Filter particles within the threshold
+        self.filtered_indices = np.where(objective_log[-1] <= min_objective_value * (1 + threshold))[0]
+        self.filtered_particles = particles[:, self.filtered_indices]
+
+        self.master.title("Select Particle Solution")
+
+        self.label = tk.Label(master, text="Select a Particle Solution:")
+        self.label.pack()
+
+        self.combobox = ttk.Combobox(master)
+        self.combobox.pack()
+        self.combobox['values'] = [f"Solution {i}" for i in self.filtered_indices]
+        self.combobox.bind("<<ComboboxSelected>>", self.update_simulation)
+
+        laser_tracker_path = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects', 'laser_tracker.urdf')
+        self.laser_tracker = p.loadURDF(laser_tracker_path, [0,0,0], p.getQuaternionFromEuler([0, 0, 0]), useFixedBase=True, globalScaling=0.001)
+
+        self.selected_particle = None
+
+    def update_simulation(self, event):
+        selected_index = self.combobox.current()
+        best_particle = self.particles[:, selected_index]
+
+        # reshape to 9x1
+        best_particle = best_particle.reshape(9, 1)
+
+        laser_tracker_position = best_particle[:3].flatten()
+
+        # move the laser tracker to the selected position
+        p.resetBasePositionAndOrientation(self.laser_tracker, laser_tracker_position, [0, 0, 0, 1])
+
+
+        self.selected_particle = best_particle
+        self.env.run_simulation(best_particle)
+
 
 if __name__ == "__main__":
     particle_log = np.load("particle_log.npy")
@@ -11,29 +61,6 @@ if __name__ == "__main__":
 
     last_particle_round = particle_log[-1]
 
-    best_particle = last_particle_round[:,np.argmin(objective_log[-1])]
-
-    print("Best particle: ", best_particle)
-
-    # reshape to 9x1
-    best_particle = best_particle.reshape(9,1)
-
-    laser_tracker_position = best_particle[:3].flatten()
-
-    laser_tracker_path = dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects','laser_tracker.urdf')
-    #load laser tracker at optimal position
-    p.loadURDF(laser_tracker_path, laser_tracker_position, p.getQuaternionFromEuler([0, 0, 0]), useFixedBase=True, globalScaling=0.001)
-
-    marker_position = best_particle[3:6].flatten()
-    marker_orientation = p.getQuaternionFromEuler(best_particle[6:9])
-
-    # visualize the markers as coordinate system relative to the flange.
-    print(marker_position)
-    print(env.robot.urdf)
-    print(env.robot._convert_endeffector('link6'))
-    pi.draw_coordinate_system(marker_position,marker_orientation,
-                              parent_id=env.robot.urdf,parent_index=env.robot._convert_endeffector('link6'))
-
-    while True:
-        env.run_simulation(best_particle)
-
+    root = tk.Tk()
+    app = ParticleSelectorApp(root, last_particle_round, objective_log, env)
+    root.mainloop()
