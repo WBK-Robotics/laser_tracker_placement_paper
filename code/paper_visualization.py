@@ -7,7 +7,7 @@ import pybullet as p
 import pybullet_industrial as pi
 
 class ParticleSelectorApp:
-    def __init__(self, master, particles, objective_log, env, threshold=0.01):
+    def __init__(self, master, particles, objective_log, env, threshold=1):
         self.master = master
         self.particles = particles
         print(self.particles)
@@ -16,10 +16,10 @@ class ParticleSelectorApp:
         self.env = env
 
         # Find the best objective value
-        min_objective_value = np.min(objective_log[-1])
+        min_objective_value = np.min(objective_log)
 
         # Filter particles within the threshold
-        self.filtered_indices = np.where(objective_log[-1] <= min_objective_value * (1 + threshold))[0]
+        self.filtered_indices = np.where(objective_log<= min_objective_value * (1 + threshold))[0]
         self.filtered_particles = particles[:, self.filtered_indices]
 
         self.master.title("Select Particle Solution")
@@ -59,8 +59,9 @@ if __name__ == "__main__":
     objective_log = np.load("objective_log.npy")
     env = LaserTrackerEnv(rendering=True)
 
-    last_particle_round = particle_log[-1]
+    last_particle_round = particle_log[70]
+    last_objective_round = objective_log[70]
 
     root = tk.Tk()
-    app = ParticleSelectorApp(root, last_particle_round, objective_log, env)
+    app = ParticleSelectorApp(root, last_particle_round, last_objective_round, env)
     root.mainloop()
