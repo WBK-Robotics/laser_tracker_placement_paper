@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     laser_tracker_path = dirname = os.path.join(os.path.dirname(__file__), 'transformer_cell', 'Objects','laser_tracker.urdf')
     #load laser tracker at optimal position
-    #p.loadURDF(laser_tracker_path, laser_tracker_position, p.getQuaternionFromEuler([0, 0, 0]), useFixedBase=True, globalScaling=0.001)
+    p.loadURDF(laser_tracker_path, laser_tracker_position, p.getQuaternionFromEuler([0, 0, 0]), useFixedBase=True, globalScaling=0.001)
 
     marker_position = best_particle[3:6].flatten()
     marker_orientation = p.getQuaternionFromEuler(best_particle[6:9])
