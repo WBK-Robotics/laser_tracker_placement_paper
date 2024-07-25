@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1721828756 "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" "paper.pdf" "paper" 1721828756
+["pdflatex"] 1721895533 "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" "paper.pdf" "paper" 1721895533
   "aliascnt.sty" 1402907262 2598 c75b6d2bf01a068cd6a375262f6819d0 ""
-  "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" 1721828752 12736 1d86e4437da9d7c98542c98b036aea90 ""
+  "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" 1721895530 13298 183d9c81b0f3bd29dbcfa9c31b14a3ac ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1648898401 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1648898983 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1648897990 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -96,8 +96,8 @@
   "c:/texlive/2021/texmf.cnf" 1648903944 713 e69b156964470283e0530f5060668171 ""
   "figures/simulation.png" 1721722795 182219 1151fd50176b083d7ffddb0f5c338bf0 ""
   "figures/visibility.png" 1721726087 423861 5812613d320ea8aea3dba2e8122408aa ""
-  "paper.aux" 1721828756 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "paper.tex" 1721828756 12643 6822cbd29f62347fc0b70adbf6a38eca ""
+  "paper.aux" 1721895533 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "paper.tex" 1721895530 13298 183d9c81b0f3bd29dbcfa9c31b14a3ac ""
   "remreset.sty" 1402907262 1096 6a75275ca00e32428c6f059d2f618ea7 ""
   "svproc.cls" 1469104184 44207 d62a9af07d0a21cd4646f95bc67af984 ""
   (generated)

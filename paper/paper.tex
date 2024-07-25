@@ -73,7 +73,7 @@ Both  are depicted in figure \ref{fig:visibility}.
 Mathematically we can define line of sight visibility (los visibility) as the following binary function:
 \begin{equation}
     f(p_m,p_l) = \begin{cases}
-    1 & \text{if } \text{marker is in line of sight of the laser tracker} \\
+    -1 & \text{if } \text{marker is in line of sight of the laser tracker} \\
     0 & \text{otherwise}
     \end{cases}
 \end{equation}
@@ -82,7 +82,7 @@ Note that $p_m$ is typically dependent on time as it is attached to a moving man
 The field of view objective can similarly be defined as a binary function:
 \begin{equation}
     g(p_m,p_l) = \begin{cases}
-    1 & \text{if } \text{marker is in the field of view of the laser tracker} \\
+    -1 & \text{if } \text{marker is in the field of view of the laser tracker} \\
     0 & \text{otherwise}
     \end{cases}
 \end{equation}
@@ -90,14 +90,15 @@ However in practice it might make sense to not be close to the boundary of the f
 Instead one can define a continuous function that is 1 in the center of the field of view and 0 at the boundary.
 The simplest way to encode this using the angle $\alpha$ between the normal of the marker and the line of sight of the laser tracker.
 \begin{equation}
-    g(p_m,p_l) = \cos(\alpha)
+    g(p_m,p_l) = -\cos(\alpha)
 \end{equation}
 The final objective function is then a weighted sum of the two components:
 \begin{equation}
-    h(p_m,p_l) = \lambda f(p_m,p_l) + (1-\lambda) g(p_m,p_l)
+    h(p_m,p_l) = \int \lambda f(p_m,p_l) + (1-\lambda) g(p_m,p_l) dt
     \label{eq:objective}
 \end{equation}
 where $\lambda$ is a weighting factor between 0 and 1 that can be adjusted to prioritize one component over the other.
+The intergral is taken over the entire trajectory of the manufacturing system that needs to be observed by the laser tracker.
 After defining the objective function we can now define the design variables and constraints.
 The design variables are the pose of the laser tracker $p_l$ and the pose of the marker $p_m$.
 However the pose of these objects is not arbitrary.
@@ -132,12 +133,26 @@ This can be encoded using a simple constraint:
 \end{equation}
 where $h_{min}$ and $h_{max}$ are the minimum and maximum height of the laser tracker stand.
 The laser tracker also has a limited range of measurement.
-Here we can define a constraint that the distance between the laser tracker and the marker is within the range of the laser tracker:
+Here we could define a constraint that the marker needs to be within the measurement range of the laser tracker.
+But in practice the laser tracker works better the closer the marker is to the laser tracker so long it is in the minimum range.
+This can be encoded using a penalty function:
 \begin{equation}
-    d_{min} \leq ||p_{p_m} - p_{p_l}|| \leq d_{max}
+    p(p_m,p_l) =  \begin{cases}
+        d & \text{if } \text{marker is in measurement range of the laser tracker} \\
+        \rho & \text{otherwise}
+    \end{cases}
 \end{equation}
-where $d_{min}$ and $d_{max}$ are the minimum and maximum range of the laser tracker.
-The final design space is then 9 dimensional, 6 for the marker pose and 3 for the laser tracker pose.
+where $d$ is the distance of the marker to the laser tracker and $\rho$ is a large penalty factor.
+The final optimization problem can be formulated as follows:
+\begin{equation}
+    \begin{split}
+    \max_{p_m,p_l} & h(p_m,p_l) \\
+    \text{s.t.} & \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} \leq r \\
+    & 0 \leq p_{p_m,z} \leq h \\
+    & h_{min} \leq p_{p_l,z} \leq h_{max} \\
+    & p(p_m,p_l) \geq 0
+    \end{split}
+\end{equation}
 
 \section{Optimization algorithm}
 There are a large number of possible optimization algorithms that can be used to solve this problem.
@@ -167,7 +182,7 @@ The penalty function can be defined as:
 \begin{equation}
     p(x) =  \begin{cases}
         0 & \text{if } x \text{ satisfies all constraints} \\
-        -\rho & \text{otherwise}
+        \rho & \text{otherwise}
     \end{cases}
 \end{equation}
 where $\rho$ is a large penalty factor.
