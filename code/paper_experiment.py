@@ -193,9 +193,13 @@ def run_experiment():
         deviation_cost = np.linalg.norm(marker_positions, axis=0)
 
         # cost that keeps the distance cost as low as possible so long as it is not below 1.2
-        distance_cost = np.sum(distance_cost,axis=0)/len(distance_cost)
 
-        distance_cost = np.array([1e2 if x < 1.2 else x for x in distance_cost])
+        # go through all the values in the distance cost and replace them with 1e2 if they are below 1.2
+        # bore summing over the trajectory
+        distance_cost = np.where(distance_cost < 1.2, 1e2, distance_cost)
+
+        distance_cost = np.sum(distance_cost,axis=0)
+
 
 
 
@@ -216,10 +220,7 @@ def run_experiment():
 
 
 
-
-
-
-        costs = visibility_cost_sum+ +distance_cost+ deviation_cost+height_constraint + radius_constraint + height_constraint
+        costs = visibility_cost_sum+ distance_cost + deviation_cost+height_constraint + radius_constraint + height_constraint
 
         print(costs)
 
@@ -231,7 +232,7 @@ def run_experiment():
     n_particles = 100
 
 
-    initial_tracker_positions = np.random.rand(3, n_particles)*3
+    initial_tracker_positions = np.random.rand(3, n_particles)*10
     initial_marker_positions = np.random.rand(3, n_particles)*0.6
     initial_marker_orientations = np.random.rand(3, n_particles)*2*np.pi
 
