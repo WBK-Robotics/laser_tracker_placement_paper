@@ -1,18 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="milling_module">
-  <link name="baseLink">
-    <contact>
-      <lateral_friction value="1.0"/>
-      <rolling_friction value="0.0"/>
-      <contact_cfm value="0.0"/>
-      <contact_erp value="0.8"/>
-      <damping value=".0"/>
-    </contact>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-       <mass value="1"/>
-       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="2"/>
-    </inertial>
+  <link concave="yes" name="baseLink">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -22,10 +10,10 @@
         <color rgba="0.7 0.7 0.7 1"/>
       </material>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="500 700 -500"/>
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-	 	<box size="1200 1200 1000"/>
+	 	<mesh filename="mesh/Fraesmodul_dec.stl"/>
       </geometry>
     </collision>
   </link>

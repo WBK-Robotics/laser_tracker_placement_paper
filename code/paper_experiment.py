@@ -22,7 +22,7 @@ class LaserTrackerEnv:
             self.physics_client = p.connect(p.DIRECT)
         else:
             self.physics_client = p.connect(p.GUI, options='--background_color_red=1 ' +
-                                            '--background_color_green=1 ' +
+                                            '--background_color_green=0 ' +
                                             '--background_color_blue=1')
             p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
 
@@ -33,7 +33,7 @@ class LaserTrackerEnv:
         p.setTimeStep(self._time_step_length)
 
         if path is None:
-            target_position = np.array([-2.4,-3,0.95])+np.array([-0.6,0.45,0.4])
+            target_position = np.array([-2.4,-3,1.05])+np.array([-0.6,0.45,0.4])
             steps = 30
             self.path = pi.build_box_path(
                 target_position, [0.5, 0.6], 0.1, [0, 0, 0, 1], steps)
@@ -72,7 +72,7 @@ class LaserTrackerEnv:
 
         mm_path = os.path.join(dirname,  'modules', 'milling_module.urdf')
         p.loadURDF(mm_path, [-2.4,-3,0.95], p.getQuaternionFromEuler([0,0,np.pi/2]),
-                   useFixedBase=True, globalScaling=0.001)
+                   useFixedBase=True, globalScaling=0.001,flags= p.GEOM_FORCE_CONCAVE_TRIMESH)
 
         table_path = os.path.join(dirname,  'modules', 'table.urdf')
         p.loadURDF(table_path, [-1.2, -0.6, 0.95], p.getQuaternionFromEuler([0, 0, np.pi/2]),
@@ -142,6 +142,13 @@ class LaserTrackerEnv:
             }
             self.robot.set_joint_position(joint_angles)
             self.second_robot.set_joint_position(joint_angles)
+            for _ in range(50):
+                p.stepSimulation()
+
+
+        self.marker.set_tool_pose(self.path.positions[:,0]+np.array([0,0,1.3]),self.path.orientations[:,0])
+        pi.draw_coordinate_system(self.path.positions[:,0]+np.array([0,0,1.3]),self.path.orientations[:,0])
+        for _ in range(100):
             p.stepSimulation()
 
 
@@ -264,10 +271,10 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    run_experiment()
-    #env = LaserTrackerEnv(rendering=True)
+    #run_experiment()
+    env = LaserTrackerEnv(rendering=True)
 
-    #while True:
-    #    env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.2,0,-0.3,0.1,0,0,0]]).T)
+    while True:
+        env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.1,0,-0.3,0.1,0,0,0]]).T)
 
 
