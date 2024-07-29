@@ -766,6 +766,11 @@ INPUT ./figures/iterations.pdf
 INPUT figures/iterations.pdf
 INPUT ./figures/iterations.pdf
 INPUT ./figures/iterations.pdf
+INPUT ./figures/trajectory.png
+INPUT ./figures/trajectory.png
+INPUT figures/trajectory.png
+INPUT ./figures/trajectory.png
+INPUT ./figures/trajectory.png
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmrc8t.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr8t.tfm

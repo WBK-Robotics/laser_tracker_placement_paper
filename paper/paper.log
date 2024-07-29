@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  29 JUL 2024 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  29 JUL 2024 15:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -782,22 +782,12 @@ File: figures/iterations.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/iterations.pdf  used on input line 232.
 (pdftex.def)             Requested size: 347.12354pt x 162.92851pt.
 [4]
-
-LaTeX Warning: File `figures/trajectory.png' not found on input line 239.
-
-
-c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:239: Package pdftex.def Error: File `figures/trajectory.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 ...th=0.8\textwidth]{figures/trajectory.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[5 <./figures/simulation.png> <./figures/iterations.pdf>] [6] [7] (./paper.aux)
+<figures/trajectory.png, id=29, 963.6pt x 439.4016pt>
+File: figures/trajectory.png Graphic file (type png)
+<use figures/trajectory.png>
+Package pdftex.def Info: figures/trajectory.png  used on input line 239.
+(pdftex.def)             Requested size: 347.12354pt x 158.28502pt.
+ [5 <./figures/simulation.png> <./figures/iterations.pdf>] [6 <./figures/trajectory.png>] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -814,18 +804,18 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16759 strings out of 478276
- 346597 string characters out of 5850490
+ 16722 strings out of 478276
+ 345732 string characters out of 5850490
  1010978 words of memory out of 5000000
- 34758 multiletter control sequences out of 15000+600000
+ 34734 multiletter control sequences out of 15000+600000
  539770 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,17n,79p,1195b,1322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 538873 bytes).
+Output written on paper.pdf (6 pages, 1264312 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 109 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
