@@ -52,12 +52,13 @@ Laser Tracker Placement Optimization for highly flexible manufacturing systems
 
 \begin{document}
 
-
-
 \maketitle
 \thispagestyle{empty}
 \pagestyle{empty}
 
+\section{Introduction}
+
+\section{State of the art}
 
 \section{Formulation of the optimization problem}
 To solve the joint optimization problem of marker and laser tracker pose we first need to define the objective function.
@@ -156,8 +157,8 @@ There are a large number of possible optimization algorithms that can be used to
 Following the no free lunch theorem we want to pick the algorithm that makes the most use of the underlying structure of the problem. %TODO citation needed
 In this case the problem is a continuous optimization problem with a relatively low number of design variables.
 On the other hand it is a gradient free optimization problem due to the line of sight visibility function.
-These two properties make the problem well suited for the particle swarm optimization (pso) algorithm.
-Particle swarm optimization (PSO) is a computational method for finding the optimal solution to a problem
+These two properties make the problem well suited for the particle swarm optimization (PSO) algorithm.
+Particle swarm optimization is a computational method for finding the optimal solution to a problem
  It is inspired by the behaviour of swarms in nature, such as flocks of birds or schools of fish, which exhibit emergent behaviour that is intelligent and efficient.
  In PSO, a group of particles (also called agents or individu-als) move through a search space, according to the fol-lowing update rules:
 \begin{equation}
@@ -170,8 +171,8 @@ where $x_{i,j}$ is the position of particle $i$ in dimension $j$, $v_{i,j}$ is t
  $c_1$ and $c_2$ are the cognitive and social coefficients, $r_1$ and $r_2$ are random numbers between 0 and 1, $p_{i,j}$ is the best position of particle $i$ in dimension $j$ and $p_{g,j}$
 is the best position of the swarm in dimension $j$.
 In our case the particles are a 9 dimensional vector based on the position of the laser tracker and the pose of the marker.
-The best particle is the one that maximizes the objective function defined in equation \ref{eq:objective}.
-The hyperparameters we need to tune are collected in table \ref{tab:hyperparameters}.
+The best particle is the one that maximizes the objective function defined in equation~\ref{eq:objective}.
+The hyperparameters we need to tune are collected in table~\ref{tab:hyperparameters}.
 Note that the pso algorithm has no direct way to encode the constraints we defined earlier.
 Instead we can use a penalty function that penalizes any particles that violate the constraints.
 This is a common approach in optimization and is also used in the implementation of the pso algorithm in the scipy library. %TODO citation needed
@@ -214,7 +215,7 @@ A image of the simulation environment is shown in figure \ref{fig:simulation}.
         \label{fig:simulation}
 \end{figure}
 
-\section{Experiment Setup}
+\section{Sample Testcase}
 To test the performance of our optimizer, we need to define a testcase.
 Both robots are Comau NJ290 industrial robots with a reach of 2.9 meters.
 The right robot services the CNC machine and the additive manufacturing system, while the left robot performs a high-precision manufacturing task.

@@ -22,7 +22,7 @@ class LaserTrackerEnv:
             self.physics_client = p.connect(p.DIRECT)
         else:
             self.physics_client = p.connect(p.GUI, options='--background_color_red=1 ' +
-                                            '--background_color_green=0 ' +
+                                            '--background_color_green=1 ' +
                                             '--background_color_blue=1')
             p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
 
@@ -271,10 +271,10 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    #run_experiment()
-    env = LaserTrackerEnv(rendering=True)
+    run_experiment()
+    #env = LaserTrackerEnv(rendering=True)
 
-    while True:
-        env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.1,0,-0.3,0.1,0,0,0]]).T)
+    #while True:
+    #    env.run_simulation(np.array([[-4,-1,3,0,0,0.3,0,0,0],[-3,-5,1.1,0,-0.3,0.1,0,0,0]]).T)
 
 

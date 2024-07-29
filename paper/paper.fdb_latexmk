@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber paper"] 0 "paper.bcf" "paper.bbl" "paper" 0
-  "paper.bcf" 0 -1 0 "pdflatex"
+["biber paper"] 1722260815 "paper.bcf" "paper.bbl" "paper" 1722260842
+  "paper.bcf" 1722244409 107204 c573c5a27147605954de32e6ee06a521 "pdflatex"
   (generated)
   "paper.bbl"
   "paper.blg"
-["pdflatex"] 1722244298 "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" "paper.pdf" "paper" 1722244298
+["pdflatex"] 1722260842 "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" "paper.pdf" "paper" 1722260842
   "aliascnt.sty" 1402907262 2598 c75b6d2bf01a068cd6a375262f6819d0 ""
-  "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" 1722244290 13301 1f06f0e390f3e6214d93eaa4a27238fc ""
+  "c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex" 1722260831 13344 838d50a4b4c09b6806fbf97ad8b225dd ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1648898401 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1648898983 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1648897990 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -121,14 +121,14 @@
   "c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1648903963 4448422 1ce8db434ffa4259b75148f2b12051ea ""
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1648904098 2826109 eaec151bb9fc8f647c55a799acfc9dcd ""
   "c:/texlive/2021/texmf.cnf" 1648903944 713 e69b156964470283e0530f5060668171 ""
-  "figures/iterations.pdf" 1722237801 15702 3e87b05ae24e43ce62b5f1e3808c4196 ""
+  "figures/iterations.pdf" 1722260642 15941 30bbc33c877ad23d4a112d11583ce287 ""
   "figures/simulation.png" 1721722795 182219 1151fd50176b083d7ffddb0f5c338bf0 ""
   "figures/trajectory.png" 0 -1 0 ""
   "figures/visibility.png" 1721726087 423861 5812613d320ea8aea3dba2e8122408aa ""
-  "paper.aux" 1722244298 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "paper.bbl" 1722244294 5205 ebb89efb3403b9ba43a36a35b0b84c23 "biber paper"
-  "paper.run.xml" 0 -1 0 "pdflatex"
-  "paper.tex" 1722244290 13301 1f06f0e390f3e6214d93eaa4a27238fc ""
+  "paper.aux" 1722260842 34 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "paper.bbl" 1722260835 5205 ebb89efb3403b9ba43a36a35b0b84c23 "biber paper"
+  "paper.run.xml" 1722260840 2314 9fcc914cc8c579e49efabde2115872b3 "pdflatex"
+  "paper.tex" 1722260831 13344 838d50a4b4c09b6806fbf97ad8b225dd ""
   "remreset.sty" 1402907262 1096 6a75275ca00e32428c6f059d2f618ea7 ""
   "svproc.cls" 1469104184 44207 d62a9af07d0a21cd4646f95bc67af984 ""
   (generated)

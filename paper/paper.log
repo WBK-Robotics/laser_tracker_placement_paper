@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  29 JUL 2024 11:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  29 JUL 2024 15:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -687,118 +687,117 @@ Package biblatex Info: Reference section=0 on input line 53.
 Package biblatex Info: Reference segment=0 on input line 53.
 
 
-Package mathptmx Warning: There are no bold math fonts on input line 57.
+Package mathptmx Warning: There are no bold math fonts on input line 55.
 
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 57.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 55.
 (c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 57.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 55.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 57.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 55.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 57.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 55.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 57.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 55.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-LaTeX Font Info:    Calculating math sizes for size <7.4> on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Calculating math sizes for size <7.4> on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.47603> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <4.44003> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 55.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 Title too long for running head. Please supply
 a shorter form with \titlerunning prior to \maketitle
 
-LaTeX Warning: Reference `fig:visibility' on page 1 undefined on input line 67.
+LaTeX Warning: Reference `fig:visibility' on page 1 undefined on input line 68.
 
 <figures/visibility.png, id=1, 807.4968pt x 376.2858pt>
 File: figures/visibility.png Graphic file (type png)
 <use figures/visibility.png>
-Package pdftex.def Info: figures/visibility.png  used on input line 70.
+Package pdftex.def Info: figures/visibility.png  used on input line 71.
 (pdftex.def)             Requested size: 277.69987pt x 129.40533pt.
 [1
 
 {c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/visibility.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 113--119
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--139
+Underfull \hbox (badness 10000) in paragraph at lines 114--120
 
  []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 135--140
 
-LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 173.
+ []
 
 
-LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 174.
+LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 174.
+
+
+LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 175.
 
 [3]
 
-LaTeX Warning: Reference `fig:simulation' on page 4 undefined on input line 209.
+LaTeX Warning: Reference `fig:simulation' on page 4 undefined on input line 210.
 
 <figures/simulation.png, id=24, 1308.89pt x 651.43375pt>
 File: figures/simulation.png Graphic file (type png)
 <use figures/simulation.png>
-Package pdftex.def Info: figures/simulation.png  used on input line 212.
+Package pdftex.def Info: figures/simulation.png  used on input line 213.
 (pdftex.def)             Requested size: 347.12354pt x 172.75833pt.
 
-LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 221.
+LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 222.
 
 
-LaTeX Warning: Reference `fig:iterations' on page 4 undefined on input line 224.
+LaTeX Warning: Reference `fig:iterations' on page 4 undefined on input line 225.
 
 
-LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 227.
+LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 228.
 
-<figures/iterations.pdf, id=25, 433.62pt x 307.87021pt>
+<figures/iterations.pdf, id=25, 625.13548pt x 293.41621pt>
 File: figures/iterations.pdf Graphic file (type pdf)
 <use figures/iterations.pdf>
-Package pdftex.def Info: figures/iterations.pdf  used on input line 231.
-(pdftex.def)             Requested size: 347.12354pt x 246.4703pt.
+Package pdftex.def Info: figures/iterations.pdf  used on input line 232.
+(pdftex.def)             Requested size: 347.12354pt x 162.92851pt.
 [4]
 
-LaTeX Warning: File `figures/trajectory.png' not found on input line 238.
+LaTeX Warning: File `figures/trajectory.png' not found on input line 239.
 
 
-c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:238: Package pdftex.def Error: File `figures/trajectory.png' not found: using draft setting.
+c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:239: Package pdftex.def Error: File `figures/trajectory.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.238 ...th=0.8\textwidth]{figures/trajectory.png}
+l.239 ...th=0.8\textwidth]{figures/trajectory.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[5 <./figures/simulation.png>] [6 <./figures/iterations.pdf>] [7] (./paper.aux)
+[5 <./figures/simulation.png> <./figures/iterations.pdf>] [6] [7] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -817,13 +816,13 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 Here is how much of TeX's memory you used:
  16759 strings out of 478276
  346597 string characters out of 5850490
- 1011978 words of memory out of 5000000
+ 1010978 words of memory out of 5000000
  34758 multiletter control sequences out of 15000+600000
  539770 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,17n,79p,1195b,1322s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 538329 bytes).
+Output written on paper.pdf (7 pages, 538873 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
