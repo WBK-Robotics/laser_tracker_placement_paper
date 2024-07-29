@@ -229,10 +229,12 @@ def run_experiment():
 
     env = LaserTrackerEnv()
 
-    n_particles = 100
+    n_particles = 500
 
 
-    initial_tracker_positions = np.random.rand(3, n_particles)*10
+    initial_tracker_positions = np.random.rand(3, n_particles)*3
+    initial_tracker_positions[0] += -3.5
+    initial_tracker_positions[1] += -3.5
     initial_marker_positions = np.random.rand(3, n_particles)*0.6
     initial_marker_orientations = np.random.rand(3, n_particles)*2*np.pi
 

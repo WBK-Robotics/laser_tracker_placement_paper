@@ -132,6 +132,11 @@ class ActiveMarker(pi.EndeffectorTool):
         self.marker_positions = [particle[3:6] for particle in particles]
         self.marker_orientations = [p.getQuaternionFromEuler(particle[6:9]) for particle in particles]
 
+        # draw markers
+        for i in range(len(self.tracker_positions)):
+            pi.draw_coordinate_system(self.marker_positions[i], self.marker_orientations[i],parent_id = self.urdf)
+
+
 class TestActiveMarker(unittest.TestCase):
 
     def setUp(self):

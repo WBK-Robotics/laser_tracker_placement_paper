@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  25 JUL 2024 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.4.2)  29 JUL 2024 09:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -486,10 +486,6 @@ LaTeX Font Info:    Trying to load font information for T1+pcr on input line 56.
  (c:/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Underfull \hbox (badness 1430) in paragraph at lines 56--56
- \T1/ptm/m/n/9 of Pro-duc-tion Sci-ence, Karl-sruhe In-sti-tute of Tech-nol-ogy, 76131 Karl-sruhe, Ger-many
- []
-
 Title too long for running head. Please supply
 a shorter form with \titlerunning prior to \maketitle
 
@@ -505,14 +501,18 @@ Package pdftex.def Info: figures/visibility.png  used on input line 69.
 (pdftex.def)             Requested size: 277.69987pt x 129.40533pt.
 [1
 
-{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/visibility.png>] [2]
+{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figures/visibility.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 121--131
 
-LaTeX Warning: Reference `eq:objective' on page 3 undefined on input line 176.
+ []
+
+[2] [3]
+
+LaTeX Warning: Reference `eq:objective' on page 4 undefined on input line 176.
 
 
-LaTeX Warning: Reference `tab:hyperparameters' on page 3 undefined on input line 177.
+LaTeX Warning: Reference `tab:hyperparameters' on page 4 undefined on input line 177.
 
-[3]
 
 LaTeX Warning: Citation `pybullet_industrial' on page 4 undefined on input line 209.
 
@@ -525,9 +525,37 @@ File: figures/simulation.png Graphic file (type png)
 Package pdftex.def Info: figures/simulation.png  used on input line 215.
 (pdftex.def)             Requested size: 347.12354pt x 172.75833pt.
 
-LaTeX Warning: Reference `fig:simulation' on page 4 undefined on input line 222.
+LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 224.
 
-[4] [5 <./figures/simulation.png>] (./paper.aux)
+
+LaTeX Warning: Reference `fig:iterations' on page 4 undefined on input line 227.
+
+
+LaTeX Warning: Reference `fig:trajectory' on page 4 undefined on input line 230.
+
+[4]
+<figures/iterations.pdf, id=28, 433.62pt x 307.87021pt>
+File: figures/iterations.pdf Graphic file (type pdf)
+<use figures/iterations.pdf>
+Package pdftex.def Info: figures/iterations.pdf  used on input line 234.
+(pdftex.def)             Requested size: 347.12354pt x 246.4703pt.
+
+
+LaTeX Warning: File `figures/trajectory.png' not found on input line 241.
+
+
+c:/Users/baumgaertner/github/laser_tracker_placement_paper/paper/paper.tex:241: Package pdftex.def Error: File `figures/trajectory.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.241 ...th=0.8\textwidth]{figures/trajectory.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[5 <./figures/simulation.png>] [6 <./figures/iterations.pdf>] [7] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -536,18 +564,18 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 9315 strings out of 478276
- 196880 string characters out of 5850490
- 456598 words of memory out of 5000000
- 27400 multiletter control sequences out of 15000+600000
+ 9368 strings out of 478276
+ 198155 string characters out of 5850490
+ 455619 words of memory out of 5000000
+ 27438 multiletter control sequences out of 15000+600000
  531799 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,17n,79p,323b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (5 pages, 516493 bytes).
+Output written on paper.pdf (7 pages, 531812 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

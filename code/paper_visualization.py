@@ -59,8 +59,8 @@ if __name__ == "__main__":
     objective_log = np.load("objective_log.npy")
     env = LaserTrackerEnv(rendering=True)
 
-    last_particle_round = particle_log[70]
-    last_objective_round = objective_log[70]
+    last_particle_round = particle_log[-1]
+    last_objective_round = objective_log[-1]
 
     root = tk.Tk()
     app = ParticleSelectorApp(root, last_particle_round, last_objective_round, env)

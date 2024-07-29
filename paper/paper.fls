@@ -626,6 +626,11 @@ INPUT ./figures/simulation.png
 INPUT figures/simulation.png
 INPUT ./figures/simulation.png
 INPUT ./figures/simulation.png
+INPUT ./figures/iterations.pdf
+INPUT ./figures/iterations.pdf
+INPUT figures/iterations.pdf
+INPUT ./figures/iterations.pdf
+INPUT ./figures/iterations.pdf
 INPUT paper.aux
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

@@ -39,12 +39,12 @@ Laser Tracker Placement Optimization for highly flexible manufacturing systems
 
 
 
-\author{Jan Baumgärtner$^{1}$,  Alexander Puchta$^{1}$ and Jürgen Fleischer$^{1}$% <-this % stops a space
+\author{Jan Baumgärtner$^{1}$, Max Goebels,   Alexander Puchta$^{1}$ and Jürgen Fleischer$^{1}$% <-this % stops a space
 \thanks{*The authors would like to thank the Ministry of Science, Research and Arts of the Federal State of Baden-Württemberg for the financial support of the project within the InnovationsCampus Future Mobility.
 }% <-this % stops a space
-\thanks{$^{1}$Jan Baumgärtner, Alexander Puchta, and Jürgen Fleischer are with the wbk Institute of Production Science,
+\thanks{$^{1}$Jan Baumgärtner, Max Goebels, Alexander Puchta, and Jürgen Fleischer are with the wbk Institute of Production Science,
         Karlsruhe Institute of Technology, 76131 Karlsruhe, Germany
-        {\tt\small jan.baumgaertner@kit.edu}}%
+        {\tt\small max.goebels@kit.edu}}%
 }
 
 
@@ -122,8 +122,8 @@ This can be encoded using a cylindrical constraint on the position of the marker
 where $r$ is the radius of the cylinder and $h$ is the height of the cylinder.
 The marker of course also cant be within the mesh of the manufacturing system, but since this would result in a line of sight visibility of 0 we do not need to encode this constraint explicitly.
 If we still want the marker close to the surface of the system such as when mounting them magnetically we can add a penalty function to the objective function that penalizes markers that are too far away from the flange.
-This will naturally force the optimizer to place the marker close to the surface of the manufacturing system.
-
+This will naturally force the optimizer to place the marker close to the surface of the manufacturing system.\\
+\\
 The pose of the laser tracker is in reality also defined by a transformation matrix $T_{l}$.
 However since the laser tracker has a spherical measurment volume we only need to define the position of the laser tracker $p_{p_l}$, which is a three dimensional vector.
 The laser tracker is also mounted on a stand, in principle this can vary in height but only in a limited range.
@@ -193,11 +193,11 @@ where $\rho$ is a large penalty factor.
         \begin{tabular}{c|c}
                 Hyperparameter & Value \\
                 \hline
-                Number of particles & 100 \\
-                Number of iterations & 1000 \\
-                Inertia weight & 0.9 \\
-                Cognitive coefficient & 2.0 \\
-                Social coefficient & 2.0 \\
+                Number of particles & 500 \\
+                Number of iterations & 100 \\
+                Inertia weight & 0.8 \\
+                Cognitive coefficient & 0.1 \\
+                Social coefficient & 0.1 \\
         \end{tabular}
         \caption{Hyperparameters of the PSO algorithm}
         \label{tab:hyperparameters}
@@ -218,15 +218,30 @@ A image of the simulation environment is shown in figure \ref{fig:simulation}.
 \end{figure}
 
 \section{Experiment Setup}
-To test the performance of our optimiser, we need to define a set of test cases.
-These consist of different trajectories of the two robots shown in figure \ref{fig:simulation}.
-Both robots are Comau NJ290 industrial robots with a reach of 2.9 metres.
-The right robot is used to service the CNC machine and the additive manufacturing system, while the left robot is used to perform a high-precision manufacturing task.
-To properly control this task, the left robot needs to be tracked by the laser tracker.
-We test whether our algorithm is able to find a placement of the laser tracking system and markers that can track the robot over its entire trajectory.
-We compare this to the performance of the original population of marker and laser tracker placements used to start the optimisation.
+To test the performance of our optimizer, we need to define a testcase.
+Both robots are Comau NJ290 industrial robots with a reach of 2.9 meters.
+The right robot services the CNC machine and the additive manufacturing system, while the left robot performs a high-precision manufacturing task.
+For this test, the left robot follows a rectangular trajectory with dimensions of 0.4 meters in length and 0.6 meters in width, as depicted in Figure \ref{fig:trajectory}.
+The aim is now to find a laser tracker and marker placement that can track the left robot throughout its entire trajectory.
+We compare this to the performance of the initial population of marker and laser tracker placements used to start the optimization process.
+Figure \ref{fig:iterations} illustrates the performance of the algorithm over multiple iterations.
+The results show that the algorithm converges to a solution in roughly 40 iterations, which is relatively fast for an optimization approach.
+This speed is likely due to the existence of numerous optimal placements for the laser tracker and markers.
+The final solution is also depicted in Figure \ref{fig:trajectory}.
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/iterations.pdf}
+\caption{Performance of the algorithm over the iterations.}
+\label{fig:iterations}
+\end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/trajectory.png}
+\caption{Trajectory of the robot and final laser tracker and marker placements.}
+\label{fig:trajectory}
+\end{figure}
 
 
 
