@@ -32,6 +32,8 @@
 \usepackage{tabularx}
 \usepackage[T1]{fontenc}
 \usepackage{makecell}
+\usepackage{biblatex}
+\bibliography{bibliography}
 
 \title{\LARGE \bf
 Laser Tracker Placement Optimization for highly flexible manufacturing systems
@@ -39,9 +41,8 @@ Laser Tracker Placement Optimization for highly flexible manufacturing systems
 
 
 
-\author{Jan Baumgärtner$^{1}$, Max Goebels,   Alexander Puchta$^{1}$ and Jürgen Fleischer$^{1}$% <-this % stops a space
-\thanks{*The authors would like to thank the Ministry of Science, Research and Arts of the Federal State of Baden-Württemberg for the financial support of the project within the InnovationsCampus Future Mobility.
-}% <-this % stops a space
+\author{Jan Baumgärtner$^{1*}$, Max Goebels$^{1*}$,   Alexander Puchta$^{1}$ and Jürgen Fleischer$^{1}$% <-this % stops a space
+\thanks{*These authors contributed equally to this work.}% <-this % stops a space
 \thanks{$^{1}$Jan Baumgärtner, Max Goebels, Alexander Puchta, and Jürgen Fleischer are with the wbk Institute of Production Science,
         Karlsruhe Institute of Technology, 76131 Karlsruhe, Germany
         {\tt\small max.goebels@kit.edu}}%
@@ -61,9 +62,9 @@ Laser Tracker Placement Optimization for highly flexible manufacturing systems
 \section{Formulation of the optimization problem}
 To solve the joint optimization problem of marker and laser tracker pose we first need to define the objective function.
 Our goal is ofcourse to maximize the visibility of the marker to the laser tracker.
-Similar to approaches such as \cite{ieee_sensors} we divide the visibility into two components.
+Similar to approaches such as~\cite{ieee_sensors} we divide the visibility into two components.
 Line of sight visibility and field of view visibility.
-Both  are depicted in figure \ref{fig:visibility}.
+Both  are depicted in figure~\ref{fig:visibility}.
 \begin{figure}
         \centering
         \includegraphics[width=0.8\textwidth]{figures/visibility.png}
@@ -92,67 +93,63 @@ The simplest way to encode this using the angle $\alpha$ between the normal of t
 \begin{equation}
     g(p_m,p_l) = -\cos(\alpha)
 \end{equation}
-The final objective function is then a weighted sum of the two components:
-\begin{equation}
-    h(p_m,p_l) = \int \lambda f(p_m,p_l) + (1-\lambda) g(p_m,p_l) dt
-    \label{eq:objective}
-\end{equation}
-where $\lambda$ is a weighting factor between 0 and 1 that can be adjusted to prioritize one component over the other.
-The intergral is taken over the entire trajectory of the manufacturing system that needs to be observed by the laser tracker.
-After defining the objective function we can now define the design variables and constraints.
-The design variables are the pose of the laser tracker $p_l$ and the pose of the marker $p_m$.
-However the pose of these objects is not arbitrary.
-For the purposes of this paper we assume that the marker is attached to the flange of the manufacturing system.
-This means that we only define a Transformation matrix $T_{m}$ that describes the pose of the marker relative to the flange.
-The final pose of the marker $p_m$ is then given by the flange transformation $T_{f}(q)$ where $q$ is the joint configuration of the robot as well as the transformation $T_{m}$:
-\begin{equation}
-    p_m = T_{f}(q)T_{m}
-\end{equation}
-While the matrix $T_m$ is a 4x4 matrix, we can parameterize it using the position of the marker $p_{p_m}$ and the orientation of the marker $p_{o_m}$.
-This results in a 6 dimensional design space for the marker pose.
-This space is further constraint to avoid any unrealistic marker positions (such as 10 meters above the robot).
-Ideally the marer should be attached close to the surface of the manufacutring system to avoid any unneccessarily large constructions that might collide with the environment or cause vibrations.
-This can be encoded using a cylindrical constraint on the position of the marker:
-\begin{equation}
-        \begin{split}
-    \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} &\leq r \\
-        0 \leq p_{p_m,z} &\leq h
-        \end{split}
-\end{equation}
-where $r$ is the radius of the cylinder and $h$ is the height of the cylinder.
-The marker of course also cant be within the mesh of the manufacturing system, but since this would result in a line of sight visibility of 0 we do not need to encode this constraint explicitly.
-If we still want the marker close to the surface of the system such as when mounting them magnetically we can add a penalty function to the objective function that penalizes markers that are too far away from the flange.
-This will naturally force the optimizer to place the marker close to the surface of the manufacturing system.\\
-\\
-The pose of the laser tracker is in reality also defined by a transformation matrix $T_{l}$.
-However since the laser tracker has a spherical measurment volume we only need to define the position of the laser tracker $p_{p_l}$, which is a three dimensional vector.
-The laser tracker is also mounted on a stand, in principle this can vary in height but only in a limited range.
-This can be encoded using a simple constraint:
-\begin{equation}
-    h_{min} \leq p_{p_l,z} \leq h_{max}
-\end{equation}
-where $h_{min}$ and $h_{max}$ are the minimum and maximum height of the laser tracker stand.
-The laser tracker also has a limited range of measurement.
-Here we could define a constraint that the marker needs to be within the measurement range of the laser tracker.
-But in practice the laser tracker works better the closer the marker is to the laser tracker so long it is in the minimum range.
-This can be encoded using a penalty function:
+Apart from line of sight we also want to optimize the measurment performance of the laser tracker.
+The accuracy of the lasertracker is mainly dependent on the distance between the marker and the laser tracker.
+The further away the marker is the less accurate the measurment will be. However there is also a minimum measurment distance that the laser tracker can handle.
+To encode this we can define a penalty function that penalizes markers that are too far away from the laser tracker.
 \begin{equation}
     p(p_m,p_l) =  \begin{cases}
-        d & \text{if } \text{marker is in measurement range of the laser tracker} \\
+        d & \text{if marker is in measurement range of the laser tracker} \\
         \rho & \text{otherwise}
     \end{cases}
 \end{equation}
-where $d$ is the distance of the marker to the laser tracker and $\rho$ is a large penalty factor.
-The final optimization problem can be formulated as follows:
+where $d$ is the distance between the marker and the laser tracker, and $\rho$ is a large penalty factor.
+The final objective function is then a weighted sum of the two components:
+\begin{equation}
+    h(p_m,p_l) = \int f(p_m,p_l) +  g(p_m,p_l) + p(p_m,p_l) \, dt
+    \label{eq:objective}
+\end{equation}
+
+The intergral is taken over the entire trajectory of the manufacturing system that needs to be observed by the laser tracker.
+Having defined the objective function, we can proceed to define the design variables and constraints.
+The design variables are the pose of the laser tracker ($p_l$) and the pose of the marker ($p_m$).\\
+\\
+First, we assume the marker is attached to the flange of the manufacturing system, meaning we only need to define a transformation matrix $T_{m}$ that describes the marker's pose relative to the flange.
+The final pose of the marker ($p_m$) is then given by combining the flange transformation $T_{f}(q)$, where $q$ is the robot's joint configuration, with the transformation $T_{m}$:
+
+\begin{equation}
+    p_m = T_{f}(q)T_{m}
+\end{equation}
+
+While $T_{m}$ is a 4x4 matrix, it can be parameterized using the marker's position ($p_{p_m}$) and orientation ($p_{o_m}$), resulting in a 6-dimensional design space for the marker pose.
+To avoid unrealistic positions, we constrain this space to keep the marker close to the manufacturing system's surface.
+This constraint can be represented cylindrically:
 \begin{equation}
     \begin{split}
-    \max_{p_m,p_l} & h(p_m,p_l) \\
-    \text{s.t.} & \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} \leq r \\
-    & 0 \leq p_{p_m,z} \leq h \\
-    & h_{min} \leq p_{p_l,z} \leq h_{max} \\
-    & p(p_m,p_l) \geq 0
+        \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} &\leq r \\
+        0 \leq p_{p_m,z} &\leq h
+    \end{split}
+\end{equation}I
+
+where $r$ is the cylinder's radius and $h$ is its height.
+Additionally, to ensure the marker remains near the surface, a penalty function can be added to the objective function to penalize markers positioned too far from the flange.\\
+\\
+The laser tracker's pose is defined by a transformation matrix $T_{l}$, but due to its spherical measurement volume, only its position ($p_{p_l}$) needs to be specified.
+The laser tracker is mounted on a stand with a height range constraint:
+\begin{equation}
+    h_{min} \leq p_{p_l,z} \leq h_{max}
+\end{equation}
+Where $h_{min}$ and $h_{max}$ are the minimum and maximum heights of the stand, respectively.
+Using the design variables and constraints of the marker and laser tracker, the optimization problem can be formulated as follows:
+\begin{equation}
+    \begin{split}
+        \max_{p_m,p_l} & \ h(p_m,p_l) \\
+        \text{s.t.} & \ \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} \leq r \\
+        & \ 0 \leq p_{p_m,z} \leq h \\
+        & \ h_{min} \leq p_{p_l,z} \leq h_{max} \\
     \end{split}
 \end{equation}
+
 
 \section{Optimization algorithm}
 There are a large number of possible optimization algorithms that can be used to solve this problem.
@@ -243,7 +240,11 @@ The final solution is also depicted in Figure \ref{fig:trajectory}.
 \label{fig:trajectory}
 \end{figure}
 
+\section{Acknowledgements}
 
+%Bibliography
+%TODO checken ob das stimmt in template
+\printbibliography
 
 \end{document}
 
