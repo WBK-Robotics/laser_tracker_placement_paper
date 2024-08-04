@@ -257,6 +257,8 @@ Figure \ref{fig:iterations} illustrates the performance of the algorithm over mu
 The results show that the algorithm converges to a solution in roughly 40 iterations, which is relatively fast for an optimization approach.
 This speed is likely due to the existence of numerous optimal placements for the laser tracker and markers.
 The final solution is also depicted in Figure \ref{fig:trajectory}.
+In conclusion the results show that the optimization approach is capable of finding a suitable laser tracker and marker placement for the manufacturing system.
+We have also verified that the algorithm is capable of handling the dynamic nature of the manufacturing system, as the optimization is performed over the entire trajectory of the robot.
 
 \begin{figure}
 \centering
@@ -271,6 +273,19 @@ The final solution is also depicted in Figure \ref{fig:trajectory}.
 \caption{Trajectory of the robot and final laser tracker and marker placements.}
 \label{fig:trajectory}
 \end{figure}
+
+\section{Conclusion}
+
+In this paper, we argue that automating the verification setup in manufacturing systems is feasible using optimization methods.
+We demonstrated this with a particle swarm optimization algorithm that optimizes the placement of a laser tracker and markers. 
+Although initially labor-intensive, this approach proves beneficial for frequently reconfiguring systems as it requires only a simulation for each verification. 
+Our results confirm the algorithm's effectiveness in determining optimal sensor placements, significantly reducing the manual effort required by engineers. 
+We believe sensor placement optimization is a promising tool for researchers to verify system performance. 
+However, the field is nascent with several unanswered questions about integrating optimization in reconfiguration processes, 
+the potential for setup reuse across different designs, and developing multiple optimal solutions. 
+We hope this paper serves as a catalyst for further research in this domain.
+
+
 
 \section{Acknowledgements}
 

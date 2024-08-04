@@ -4,7 +4,7 @@
   (generated)
   "paper.bbl"
   "paper.blg"
-["pdflatex"] 1722776645 "e:/GitHub/laser_tracker_placement_paper/paper/paper.tex" "e:/GitHub/laser_tracker_placement_paper/paper/paper.pdf" "paper" 1722776645
+["pdflatex"] 1722777471 "e:/GitHub/laser_tracker_placement_paper/paper/paper.tex" "e:/GitHub/laser_tracker_placement_paper/paper/paper.pdf" "paper" 1722777471
   "aliascnt.sty" 1722772999 2598 c75b6d2bf01a068cd6a375262f6819d0 ""
   "c:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc" 1608724045 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1608724230 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -126,8 +126,8 @@
   "c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1608725797 5118638 1d0dffa022c23ae5654455a7db504cc6 ""
   "c:/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1608725892 2553245 278b5889f4adbb270045e3a48238efcd ""
   "c:/texlive/2020/texmf.cnf" 1608725777 713 e69b156964470283e0530f5060668171 ""
-  "e:/GitHub/laser_tracker_placement_paper/paper/paper.aux" 1722776645 9 a94a2480d3289e625eea47cd1b285758 ""
-  "e:/GitHub/laser_tracker_placement_paper/paper/paper.tex" 1722776547 16750 bd420c20f0fdd616da5acc97dd3eba67 ""
+  "e:/GitHub/laser_tracker_placement_paper/paper/paper.aux" 1722777471 9 a94a2480d3289e625eea47cd1b285758 ""
+  "e:/GitHub/laser_tracker_placement_paper/paper/paper.tex" 1722777466 18122 5382cd403bd806bf6cb450f820a3323f ""
   "figures/iterations.pdf" 1722772999 15941 30bbc33c877ad23d4a112d11583ce287 ""
   "figures/simulation.png" 1722772999 182219 1151fd50176b083d7ffddb0f5c338bf0 ""
   "figures/trajectory.png" 1722772999 957251 57363da691f9d6d37137d98d600d9af0 ""
@@ -135,14 +135,14 @@
   "paper.aux" 0 -1 0 "pdflatex"
   "paper.bbl" 1722773648 5205 a9dcb4a8c5a2f8d72ce65ef42443c20d "biber paper"
   "paper.run.xml" 0 -1 0 "pdflatex"
-  "paper.tex" 1722776547 16750 bd420c20f0fdd616da5acc97dd3eba67 ""
+  "paper.tex" 1722777466 18122 5382cd403bd806bf6cb450f820a3323f ""
   "remreset.sty" 1722772999 1135 6a75275ca00e32428c6f059d2f618ea7 ""
   "svproc.cls" 1722772999 44207 d62a9af07d0a21cd4646f95bc67af984 ""
   (generated)
-  "paper.run.xml"
+  "paper.aux"
   "e:/GitHub/laser_tracker_placement_paper/paper/paper.pdf"
+  "paper.run.xml"
   "paper.bcf"
+  "paper.log"
   "paper.pdf"
   "e:/GitHub/laser_tracker_placement_paper/paper/paper.log"
-  "paper.aux"
-  "paper.log"
