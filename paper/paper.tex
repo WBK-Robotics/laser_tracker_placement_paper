@@ -56,9 +56,45 @@ Laser Tracker Placement Optimization for highly flexible manufacturing systems
 \thispagestyle{empty}
 \pagestyle{empty}
 
+\section*{Abstract}
+In recent years, modular and reconfigurable manufacturing systems have gained attention for their adaptability. 
+While system design is now highly automated, designing the verification setup remains a manual design problem involving tasks like placing external sensors to measure performance. 
+This paper argues that design optimization approaches for manufacturing systems can also automate the design of the verification setup.
+This is demonstrated using the placement of a laser tracker system with markers that due to their line-of-sight complexity and simultaneous measurement of multiple systems can be challenging to design.
+We present a straightforward optimization approach to demonstrate potential automation in this area.
 \section{Introduction}
 
 \section{State of the art}
+The work presented in this paper lies at the intersection of two research fields: optimization of manufacturing systems and sensor placement optimization.
+The question this work first has to answer is what do we actually verify in a manufacturing system.
+The first thing we have to clarify here is that we are not looking at product based verification but system based verification.
+This means we dont want to look at the resulting quality of the product but at the performance of the manufacturing system itself.
+The main reason for this is tha the reconfigurable manufacturing systems we are looking at are not varying in processes but in how the machine achieves the same process.
+This means we dont want to measure the process influence but the machine influence.
+In the framework of \cite{reconfigurable_production} this means we are mainly dealing with the reconfiguration design issue.
+Examples of such systems include the robot cell optimization problem proposed in \cite{previous_work} or \cite{stiffness_placement} 
+but also robot design optimization problems such as \cite{task_synthesis}, \cite{ad-hoc_manipulator} or\cite{multi_objective}.
+These works are very robotics specific for a more manufacturing based perspective we can look at works such as \cite{johannes_1} or \cite{johannes_2}.
+The main considerations in these works where the possible payload, accuracy, stiffness, force, weight and possible motion of the systems.
+The important point is that in order to verify that the system configuration that was optimized is indeed capable of achieving the desired performance we need to measure the performance of the system.
+Since most configurable manufacturing systems are not capable of directly measuring their accuracy, force or stiffness we need to use external sensors to measure these values.
+This requires a verification setup that is capable of measuring the performance of the manufacturing system.
+If we want to automate this process we are dealing with the domain of sensor placement optimization.
+The main goal of sensor placement optimization is to find the optimal placement of sensors in a system such that the performance of the system can be measured as accurately as possible.
+This is a well studied field in the context of structural health monitoring where a comprehensive overview can be found in \cite{shms}.
+Important algorithms in this field are the genetic algorithm, particle swarm optimization and simulated annealing \cite{shms}.
+Borrowing from this field we will also use a particle swarm optimization algorithm to solve our optimization problem.
+The paper also explores a host of different measurement types such as Velocity, displacement, acceleration, strain, temperature or pressure.
+Howeverwhile it is possible to borrow from this field additional challenges are introduces by the fact that manufacutring systems are typically moving
+and that the sensor placement thus has to take into account the total trajectory of the manufacturing system.
+Only recently has this challenge been started to be addressed in the context of manufacturing systems \cite{ieee_sensors}.
+Allhough this early work focuses on process control and not system verification its methodologies can be applied to our problem.
+Mainly that instead of optimizing a single objective function we need to optimize a objective integrated over the total process time.
+However since we are not looking at cameras such as the previous paper we need to derive our own visibility model reflecting the measurement characteristics of a laser tracker.
+
+
+
+
 
 \section{Formulation of the optimization problem}
 To solve the joint optimization problem of marker and laser tracker pose we first need to define the objective function.
@@ -154,12 +190,12 @@ Using the design variables and constraints of the marker and laser tracker, the 
 
 \section{Optimization algorithm}
 There are a large number of possible optimization algorithms that can be used to solve this problem.
-Following the no free lunch theorem we want to pick the algorithm that makes the most use of the underlying structure of the problem. %TODO citation needed
+Following the no free lunch theorem \cite{no_free_lunch_theorem} we want to pick the algorithm that makes the most use of the underlying structure of the problem.
 In this case the problem is a continuous optimization problem with a relatively low number of design variables.
 On the other hand it is a gradient free optimization problem due to the line of sight visibility function.
-These two properties make the problem well suited for the particle swarm optimization (PSO) algorithm.
-Particle swarm optimization is a computational method for finding the optimal solution to a problem
- It is inspired by the behaviour of swarms in nature, such as flocks of birds or schools of fish, which exhibit emergent behaviour that is intelligent and efficient.
+These two properties make the problem well suited for the particle swarm optimization (PSO) algorithm \cite{pso}.
+Particle swarm optimization is a computational method for finding the optimal solution to a problem.
+It is inspired by the behaviour of swarms in nature, such as flocks of birds or schools of fish, which exhibit emergent behaviour that is intelligent and efficient.
  In PSO, a group of particles (also called agents or individu-als) move through a search space, according to the fol-lowing update rules:
 \begin{equation}
         \begin{split}

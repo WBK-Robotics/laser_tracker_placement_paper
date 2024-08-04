@@ -1,5 +1,5 @@
 
-}
+
 
 @INPROCEEDINGS{ieee_sensors,
   author={Baumgärtner, Jan and Bertschinger, Bernd and Hoffmann, Kathrin and Puchta, Alexander and Sawodny, Oliver and Reichelt, Stephan and Fleischer, Jürgen},
@@ -23,3 +23,154 @@ pages = {5174},
 author = {Jan Baumgärtner and Malte Hansjosten and Dominik Schönhofen and Prof. Dr.-Ing. Jürgen Fleischer},
 title = {PyBullet Industrial: A process-aware robot simulation},
 journal = {Journal of Open Source Software} }
+
+@InProceedings{johannes_1,
+author="Scholz, Johannes
+and Zeidler, Simon
+and Koessler, Florian
+and Fleischer, J{\"u}rgen",
+editor="Bauernhansl, Thomas
+and Verl, Alexander
+and Liewald, Mathias
+and M{\"o}hring, Hans-Christian",
+title="Systematic Lightweight Design of Production Equipment with a Digital Toolchain",
+booktitle="Production at the Leading Edge of Technology",
+year="2024",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="24--33",
+abstract="The importance of sustainable production is growing all the time. Lightweight design of production equipment is a possible measure to increase the sustainability. These potentials are often not used to their full extent due to a high focus on investment costs. To resolve this target conflict, this paper presents the lightweight design of production equipment based on a systematic development process and the corresponding digital toolchain. It includes a newly lightweight design technology planning tool to optimize cost, CO2 and weight from a production perspective. Based on a rough description of the component and previously modelled requirements an optimized shape, production process and material are recommended. Subsequently, the component can be further detailed with this knowledge. Through the digital toolchain the effects of different designs on the usage of the production equipment can be easily estimated. This enables the developer to identify the potential of lighter but more expensive components.",
+isbn="978-3-031-47394-4"
+}
+@article{johannes_2,
+title = {Lightweight design of a gripping system using a holistic systematic development process - A case study},
+journal = {Procedia CIRP},
+volume = {118},
+pages = {187-192},
+year = {2023},
+note = {16th CIRP Conference on Intelligent Computation in Manufacturing Engineering},
+issn = {2212-8271},
+doi = {https://doi.org/10.1016/j.procir.2023.06.033},
+url = {https://www.sciencedirect.com/science/article/pii/S221282712300255X},
+author = {Johannes Scholz and Jerome Kaspar and Kristian König and Marco Friedmann and Michael Vielhaber and Jürgen Fleischer},
+keywords = {lightweight design, model-based systems engineering, product development, gripping system, case study},
+abstract = {Lightweight design is a key driver for resource and energy efficiency and thus essential on the road to climate neutrality. A systematic and holistic development process can significantly leverage the potential of lightweight design in industries like machinery and plant engineering. This paper describes the application of a novel systematic lightweight design process for the development of a gripping system, considering design, material and manufacturing. Based on the state of the art in gripping system development, the novel systematic lightweight development process is applied to the case study of a gripping system.}
+}
+
+
+
+@book{task_synthesis,
+  abstract  = {The present work addresses the unification of the structural and dimensional synthesis of serial robot manipulators. Unlike related publications, the approach does not utilize simplifications of the kinematic structures. In addition, it is also capable of generating manipulators with up to six degrees of freedom. The approach reduces the computational effort by automatically generating the task-suitable architectures together with their corresponding optimisation parameters. Since the kinematics modelling is one of the main challenges, an algorithm for the numerical solution of the inverse kinematics is introduced. Finally, in order to demonstrate the capability of the method, the optimal manipulator for a pick and place operation is found using kinematic performance indices and particle swarm optimisation.},
+  author    = {D. Ramirez and J. Kotlarski and T. Ortmaier},
+  doi       = {10.1007/978-3-319-33714-2_23},
+  issn      = {23093706},
+  journal   = {CISM International Centre for Mechanical Sciences, Courses and Lectures},
+  keywords  = {Denavit-Hartenberg parameters,Dimensional synthesis,Robot design,Serial manipulators,Structural synthesis},
+  pages     = {207-216},
+  publisher = {Springer International Publishing},
+  title     = {Combined Structural and Dimensional Synthesis of Serial Robot Manipulators},
+  volume    = {569},
+  year      = {2016}
+}
+
+@inproceedings{ad-hoc_manipulator,
+  author={Campos, Thais and Inala, Jeevana Priya and Solar-Lezama, Armando and Kress-Gazit, Hadas},
+  booktitle ={Proceedings - International Conference on Robotics and Automation (ICRA)}, 
+  title={Task-Based Design of Ad-hoc Modular Manipulators}, 
+  year={2019},
+  volume={},
+  number={},
+  pages={6058-6064},
+  keywords={Task analysis;Manipulators;Trajectory;Actuators;Genetic algorithms;Kinematics},
+  doi={10.1109/ICRA.2019.8794171}
+}
+
+@inproceedings{multi_objective,
+  author={Hu, Xiaomeng and Wan, Weiwei and Du, Liang and Yuan, Jianjun and Ma, Shugen},
+  journal={2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={Multi-Objective Geometric Optimization of A Multi-Link Manipulator Using Parameterized Design Method}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={7310-7316},
+  keywords={Geometry;Design methodology;Optimization methods;Manipulators;Task analysis;Intelligent robots},
+  doi={10.1109/IROS47612.2022.9982094}}
+
+
+@inproceedings{previous_work,
+  author    = {Baumg{\"a}rtner, Jan
+               and G{\"o}nnheimer, Philipp
+               and Fleischer, J{\"u}rgen},
+  title     = {Optimal Robot Workpiece Placement for Maximized Repeatability},
+  booktitle = {Advances in System-Integrated Intelligence},
+  year      = {2023},
+  publisher = {Springer International Publishing},
+  pages     = {252--261},
+  abstract  = {When choosing an industrial robot, repeatability is often one of the most important decision factors. But repeatability is not a global property, instead, it strongly depends on the robot's workspace position. This is currently ignored in robot cell planning leading to a loss of actual repeatability. This paper not only quantifies this loss but presents a new algorithm that finds the optimal position of a workpiece such that repeatability is optimized. The predictions of this algorithm are verified using digital twin simulations on different robots which show up to nine times higher repeatability than with the unoptimized position.},
+  doi = {10.1007/978-3-031-16281-7_25}
+}
+
+@article{stiffness_placement,
+  abstract  = {Robots have various advantages such as multiple degrees of freedom (DOFs), flexibility, and cost efficiency. Although robots have mostly been utilized for painting, welding, pick-and-place, and assembly tasks, robot machining has been actively introduced in many fields to maximize productivity. The main obstacle to robot machining is the poor stiffness of robots, which is lower than that of conventional machine tools. Low stiffness induces compliance errors that deteriorate machining quality. One effort to improve stiffness is tool path compensation, in which compliance errors are predicted and compensated for by utilizing a stiffness model. Another approach to solving the stiffness problem is posture optimization, in which a performance index is defined based on the stiffness model. Such a performance index evaluates stiffness according to the configuration of a robot. Using this index, one can optimize the posture of a robot to maximize stiffness during machining. In previous studies, optimization was performed for the redundant DOF in the spindle axis direction at a given position, assuming a fixed workpiece and vertical feed direction. However, workpiece placement also has to be optimized in the robot workspace to obtain the optimal machining posture. This study introduced a novel approach to posture optimization. A deformation energy model that can evaluate stiffness from an energy perspective was proposed. With the proposed method, the posture of the robot and the workpiece position can be optimized simultaneously. Global optimization was performed within the entire workspace, and simulations were conducted to verify the optimization results. Additionally, local optimization considering the working environment was performed to deal with the practical problems in real scenarios. The results of optimization were verified experimentally.},
+  author    = {Jae Ho Lee and Seong Hyeon Kim and Byung Kwon Min},
+  doi       = {10.1016/j.rcim.2022.102395},
+  issn      = {07365845},
+  journal   = {Robotics and Computer-Integrated Manufacturing},
+  keywords  = {Industrial robot,deformation energy model,pose optimization,robot drilling,robot machining,stiffness},
+  month     = {12},
+  publisher = {Elsevier Ltd},
+  title     = {Posture optimization in robotic drilling using a deformation energy model},
+  volume    = {78},
+  year      = {2022}
+}
+
+
+@article{shms,
+  title={A systematic review of optimization algorithms for structural health monitoring and optimal sensor placement},
+  author={Hassani, Sahar and Dackermann, Ulrike},
+  journal={Sensors},
+  volume={23},
+  number={6},
+  pages={3293},
+  year={2023},
+  publisher={MDPI}
+}
+
+@article{pso,
+  title={Particle swarm optimization algorithm: an overview},
+  author={Wang, Dongshu and Tan, Dapei and Liu, Lei},
+  journal={Soft computing},
+  volume={22},
+  number={2},
+  pages={387--408},
+  year={2018},
+  publisher={Springer}
+}
+
+@article{no_free_lunch_theorem,
+  title={No free lunch theorem: A review},
+  author={Adam, Stavros P and Alexandropoulos, Stamatios-Aggelos N and Pardalos, Panos M and Vrahatis, Michael N},
+  journal={Approximation and optimization: Algorithms, complexity and applications},
+  pages={57--82},
+  year={2019},
+  publisher={Springer}
+}
+
+@article{reconfigurable_production,
+author = {Z. M. Bi, S. Y. T. Lang, W. Shen and L. Wang},
+title = {Reconfigurable manufacturing systems: the state of the art},
+journal = {International Journal of Production Research},
+volume = {46},
+number = {4},
+pages = {967--992},
+year = {2008},
+publisher = {Taylor \& Francis},
+doi = {10.1080/00207540600905646},
+URL = { 
+        https://doi.org/10.1080/00207540600905646
+},
+eprint = { 
+    
+        https://doi.org/10.1080/00207540600905646  
+}
+}
