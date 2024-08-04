@@ -65,33 +65,28 @@ We present a straightforward optimization approach to demonstrate potential auto
 \section{Introduction}
 
 \section{State of the art}
-The work presented in this paper lies at the intersection of two research fields: optimization of manufacturing systems and sensor placement optimization.
-The question this work first has to answer is what do we actually verify in a manufacturing system.
-The first thing we have to clarify here is that we are not looking at product based verification but system based verification.
-This means we dont want to look at the resulting quality of the product but at the performance of the manufacturing system itself.
-The main reason for this is tha the reconfigurable manufacturing systems we are looking at are not varying in processes but in how the machine achieves the same process.
-This means we dont want to measure the process influence but the machine influence.
-In the framework of \cite{reconfigurable_production} this means we are mainly dealing with the reconfiguration design issue.
-Examples of such systems include the robot cell optimization problem proposed in \cite{previous_work} or \cite{stiffness_placement} 
-but also robot design optimization problems such as \cite{task_synthesis}, \cite{ad-hoc_manipulator} or\cite{multi_objective}.
-These works are very robotics specific for a more manufacturing based perspective we can look at works such as \cite{johannes_1} or \cite{johannes_2}.
-The main considerations in these works where the possible payload, accuracy, stiffness, force, weight and possible motion of the systems.
-The important point is that in order to verify that the system configuration that was optimized is indeed capable of achieving the desired performance we need to measure the performance of the system.
-Since most configurable manufacturing systems are not capable of directly measuring their accuracy, force or stiffness we need to use external sensors to measure these values.
-This requires a verification setup that is capable of measuring the performance of the manufacturing system.
-If we want to automate this process we are dealing with the domain of sensor placement optimization.
-The main goal of sensor placement optimization is to find the optimal placement of sensors in a system such that the performance of the system can be measured as accurately as possible.
-This is a well studied field in the context of structural health monitoring where a comprehensive overview can be found in \cite{shms}.
-Important algorithms in this field are the genetic algorithm, particle swarm optimization and simulated annealing \cite{shms}.
-Borrowing from this field we will also use a particle swarm optimization algorithm to solve our optimization problem.
-The paper also explores a host of different measurement types such as Velocity, displacement, acceleration, strain, temperature or pressure.
-Howeverwhile it is possible to borrow from this field additional challenges are introduces by the fact that manufacutring systems are typically moving
-and that the sensor placement thus has to take into account the total trajectory of the manufacturing system.
-Only recently has this challenge been started to be addressed in the context of manufacturing systems \cite{ieee_sensors}.
-Allhough this early work focuses on process control and not system verification its methodologies can be applied to our problem.
-Mainly that instead of optimizing a single objective function we need to optimize a objective integrated over the total process time.
-However since we are not looking at cameras such as the previous paper we need to derive our own visibility model reflecting the measurement characteristics of a laser tracker.
+The work presented in this paper intersects two research fields: manufacturing systems optimization and sensor placement optimization. 
+Our primary question is what aspects of a manufacturing system we need to verify. 
+We focus on system-based verification rather than product-based, aiming to measure the performance of the manufacturing system, not the resulting product quality.
+In particular we focuss on approaches that solves what~\cite{reconfigurable_production} calls reconfiguration design problem.
+This involves either combining fixed modules to form a system or directly optimizing the sytems physical design.
+ Examples include robot cell optimization problems~\cite{previous_work, stiffness_placement} and robot design optimization problems~\cite{task_synthesis, ad-hoc_manipulator, multi_objective}. 
+ For a manufacturing perspective, works such as~\cite{johannes_1, johannes_2} are relevant.
+ All of these approaches focus on phyiscal capabilities such as payload, accuracy, stiffness, force, weight, and motion.
 
+To verify that the optimized system configuration achieves the desired performance, we need to measure the system's performance using external sensors, 
+however in all of the above works the sensor placement for verification (if done at all) is done manually.
+This can be a challening task which brings us to the field of sensor placement optimization.
+The goal here is to find the optimal sensor placement for accurate system performance measurement.
+A adjecent engineering discipline in which sensor placement optimization is a already well studied is structural health monitoring~\cite{shms}.
+Here key algorithms where already identified such as genetic algorithms, particle swarm optimization, and simulated annealing~\cite{shms}.
+Based on these works we will also use a particle swarm optimization algorithm for our problem.
+However the field of structural health monitoring mainly considers static systems while our manufacturing systems are by nature dynamic.
+This introduces additional challenges since the sensor placement needs to account for the systems total trajectory.
+This challenge has only recently been addressed in manufacturing systems~\cite{ieee_sensors}. Although this early work focuses on process control, not system verification, its methodologies are applicable, 
+emphasizing optimizing an objective integrated over total process time. 
+However, since we are not using cameras as in the previous study, we must derive our own visibility model reflecting the measurement characteristics of a laser tracker.
+This will be the focus of the next section.
 
 
 

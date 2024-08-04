@@ -2352,19 +2352,19 @@
   <bcf:section number="0">
     <bcf:citekey order="1">reconfigurable_production</bcf:citekey>
     <bcf:citekey order="2">previous_work</bcf:citekey>
-    <bcf:citekey order="3">stiffness_placement</bcf:citekey>
-    <bcf:citekey order="4">task_synthesis</bcf:citekey>
-    <bcf:citekey order="5">ad-hoc_manipulator</bcf:citekey>
-    <bcf:citekey order="6">multi_objective</bcf:citekey>
-    <bcf:citekey order="7">johannes_1</bcf:citekey>
-    <bcf:citekey order="8">johannes_2</bcf:citekey>
-    <bcf:citekey order="9">shms</bcf:citekey>
-    <bcf:citekey order="10">shms</bcf:citekey>
-    <bcf:citekey order="11">ieee_sensors</bcf:citekey>
-    <bcf:citekey order="12">ieee_sensors</bcf:citekey>
-    <bcf:citekey order="13">no_free_lunch_theorem</bcf:citekey>
-    <bcf:citekey order="14">pso</bcf:citekey>
-    <bcf:citekey order="15">pybullet_industrial</bcf:citekey>
+    <bcf:citekey order="2">stiffness_placement</bcf:citekey>
+    <bcf:citekey order="3">task_synthesis</bcf:citekey>
+    <bcf:citekey order="3">ad-hoc_manipulator</bcf:citekey>
+    <bcf:citekey order="3">multi_objective</bcf:citekey>
+    <bcf:citekey order="4">johannes_1</bcf:citekey>
+    <bcf:citekey order="4">johannes_2</bcf:citekey>
+    <bcf:citekey order="5">shms</bcf:citekey>
+    <bcf:citekey order="6">shms</bcf:citekey>
+    <bcf:citekey order="7">ieee_sensors</bcf:citekey>
+    <bcf:citekey order="8">ieee_sensors</bcf:citekey>
+    <bcf:citekey order="9">no_free_lunch_theorem</bcf:citekey>
+    <bcf:citekey order="10">pso</bcf:citekey>
+    <bcf:citekey order="11">pybullet_industrial</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
