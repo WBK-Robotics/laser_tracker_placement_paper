@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.1 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -19,6 +19,89 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{no_free_lunch_theorem}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ca500b52150dfc42e56b5fdfab605c7b}{%
+           family={Adam},
+           familyi={A\bibinitperiod},
+           given={Stavros\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=a71855aee60f021b1168b0cca150be9c}{%
+           family={Alexandropoulos},
+           familyi={A\bibinitperiod},
+           given={Stamatios-Aggelos\bibnamedelima N},
+           giveni={S\bibinithyphendelim A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=d2d3f2408d645df2cf4e8142841c3647}{%
+           family={Pardalos},
+           familyi={P\bibinitperiod},
+           given={Panos\bibnamedelima M},
+           giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ea5b1f7a311b849208f2c217a6d78850}{%
+           family={Vrahatis},
+           familyi={V\bibinitperiod},
+           given={Michael\bibnamedelima N},
+           giveni={M\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{eb825c90c51574c0b2205a62a645aa25}
+      \strng{fullhash}{ac8b2a68e4183416a0531fc05b798b20}
+      \strng{bibnamehash}{eb825c90c51574c0b2205a62a645aa25}
+      \strng{authorbibnamehash}{eb825c90c51574c0b2205a62a645aa25}
+      \strng{authornamehash}{eb825c90c51574c0b2205a62a645aa25}
+      \strng{authorfullhash}{ac8b2a68e4183416a0531fc05b798b20}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Approximation and optimization: Algorithms, complexity and applications}
+      \field{title}{No free lunch theorem: A review}
+      \field{year}{2019}
+      \field{pages}{57\bibrangedash 82}
+      \range{pages}{26}
+    \endentry
+    \entry{previous_work}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=5dbcb1884f3224ae87d7e139794083f2}{%
+           family={Baumgärtner},
+           familyi={B\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6778900aa034793bc268222c6515e4e2}{%
+           family={Gönnheimer},
+           familyi={G\bibinitperiod},
+           given={Philipp},
+           giveni={P\bibinitperiod}}}%
+        {{hash=bd3a118d192a01a1787cd9f4e565219c}{%
+           family={Fleischer},
+           familyi={F\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{0466e8fada92cfa32605d4c8fe520473}
+      \strng{fullhash}{0466e8fada92cfa32605d4c8fe520473}
+      \strng{bibnamehash}{0466e8fada92cfa32605d4c8fe520473}
+      \strng{authorbibnamehash}{0466e8fada92cfa32605d4c8fe520473}
+      \strng{authornamehash}{0466e8fada92cfa32605d4c8fe520473}
+      \strng{authorfullhash}{0466e8fada92cfa32605d4c8fe520473}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{When choosing an industrial robot, repeatability is often one of the most important decision factors. But repeatability is not a global property, instead, it strongly depends on the robot's workspace position. This is currently ignored in robot cell planning leading to a loss of actual repeatability. This paper not only quantifies this loss but presents a new algorithm that finds the optimal position of a workpiece such that repeatability is optimized. The predictions of this algorithm are verified using digital twin simulations on different robots which show up to nine times higher repeatability than with the unoptimized position.}
+      \field{booktitle}{Advances in System-Integrated Intelligence}
+      \field{title}{Optimal Robot Workpiece Placement for Maximized Repeatability}
+      \field{year}{2023}
+      \field{pages}{252\bibrangedash 261}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1007/978-3-031-16281-7_25
+      \endverb
+    \endentry
     \entry{ieee_sensors}{inproceedings}{}
       \name{author}{7}{}{%
         {{hash=5dbcb1884f3224ae87d7e139794083f2}{%
@@ -65,7 +148,7 @@
       \strng{authorfullhash}{948009a1eabd15eddd75f64fe1ef72aa}
       \field{extraname}{1}
       \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2023 IEEE SENSORS}
@@ -112,7 +195,7 @@
       \strng{authorfullhash}{283d0e799b5ed333acc683412da58284}
       \field{extraname}{2}
       \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Open Source Software}
@@ -130,6 +213,790 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.21105/joss.05174
+      \endverb
+    \endentry
+    \entry{ad-hoc_manipulator}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=861756ef08dc6628fc655c55459c76ee}{%
+           family={Campos},
+           familyi={C\bibinitperiod},
+           given={Thais},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6f0b6562558497401d0160a5f8ccb2d3}{%
+           family={Inala},
+           familyi={I\bibinitperiod},
+           given={Jeevana\bibnamedelima Priya},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=6c3f3e278b534563f641aca05842bd0a}{%
+           family={Solar-Lezama},
+           familyi={S\bibinithyphendelim L\bibinitperiod},
+           given={Armando},
+           giveni={A\bibinitperiod}}}%
+        {{hash=037e782a30a2f22ad41ef3aa30e7cbbb}{%
+           family={Kress-Gazit},
+           familyi={K\bibinithyphendelim G\bibinitperiod},
+           given={Hadas},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3225af3b99b5504307e6cacbd8dcdd4}
+      \strng{fullhash}{33350bfb017c40aad306b7cf3184e616}
+      \strng{bibnamehash}{b3225af3b99b5504307e6cacbd8dcdd4}
+      \strng{authorbibnamehash}{b3225af3b99b5504307e6cacbd8dcdd4}
+      \strng{authornamehash}{b3225af3b99b5504307e6cacbd8dcdd4}
+      \strng{authorfullhash}{33350bfb017c40aad306b7cf3184e616}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings - International Conference on Robotics and Automation (ICRA)}
+      \field{title}{Task-Based Design of Ad-hoc Modular Manipulators}
+      \field{year}{2019}
+      \field{pages}{6058\bibrangedash 6064}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/ICRA.2019.8794171
+      \endverb
+      \keyw{Task analysis;Manipulators;Trajectory;Actuators;Genetic algorithms;Kinematics}
+    \endentry
+    \entry{gadallaRecentAdvancesResearch2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=be9e26fa8b4656cf936c057162650b61}{%
+           family={Gadalla},
+           familyi={G\bibinitperiod},
+           given={Moustafa},
+           giveni={M\bibinitperiod}}}%
+        {{hash=279dee0bcd664db9f8ec71782a5eca5d}{%
+           family={Xue},
+           familyi={X\bibinitperiod},
+           given={Deyi},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \strng{fullhash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \strng{bibnamehash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \strng{authorbibnamehash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \strng{authornamehash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \strng{authorfullhash}{f2bec6cf693bba6b30b983c98333d8c7}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0020-7543, 1366-588X}
+      \field{journaltitle}{International Journal of Production Research}
+      \field{month}{3}
+      \field{number}{5}
+      \field{shorttitle}{Recent Advances in Research on Reconfigurable Machine Tools}
+      \field{title}{Recent Advances in Research on Reconfigurable Machine Tools: A Literature Review}
+      \field{volume}{55}
+      \field{year}{2017}
+      \field{pages}{1440\bibrangedash 1454}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1080/00207543.2016.1237795
+      \endverb
+    \endentry
+    \entry{shms}{article}{}
+      \name{author}{2}{}{%
+        {{hash=0ac8cd19372bfac1e2386b23d32e3b16}{%
+           family={Hassani},
+           familyi={H\bibinitperiod},
+           given={Sahar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=3d493c828105dbe2a803f6711195ed36}{%
+           family={Dackermann},
+           familyi={D\bibinitperiod},
+           given={Ulrike},
+           giveni={U\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{c3365da36774954e8c1452e48b962504}
+      \strng{fullhash}{c3365da36774954e8c1452e48b962504}
+      \strng{bibnamehash}{c3365da36774954e8c1452e48b962504}
+      \strng{authorbibnamehash}{c3365da36774954e8c1452e48b962504}
+      \strng{authornamehash}{c3365da36774954e8c1452e48b962504}
+      \strng{authorfullhash}{c3365da36774954e8c1452e48b962504}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sensors}
+      \field{number}{6}
+      \field{title}{A systematic review of optimization algorithms for structural health monitoring and optimal sensor placement}
+      \field{volume}{23}
+      \field{year}{2023}
+      \field{pages}{3293}
+      \range{pages}{1}
+    \endentry
+    \entry{multi_objective}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=7c0e93f19aa65f1c141510347200dd54}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Xiaomeng},
+           giveni={X\bibinitperiod}}}%
+        {{hash=3cc91d385b1bf8434cb61a7777b144d7}{%
+           family={Wan},
+           familyi={W\bibinitperiod},
+           given={Weiwei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=d290f22d81ff711b697899d2c0cd7ebc}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Liang},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e582c6e2a4b1ec06dbcaabc7e9c2f7db}{%
+           family={Yuan},
+           familyi={Y\bibinitperiod},
+           given={Jianjun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0fd0de0b99eb31297e2b7f10ee3063ef}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Shugen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ae1b923217ef3dfe58a08c53e2f0e00}
+      \strng{fullhash}{0c66afaf25867ea882fd3a0cf1970b0b}
+      \strng{bibnamehash}{4ae1b923217ef3dfe58a08c53e2f0e00}
+      \strng{authorbibnamehash}{4ae1b923217ef3dfe58a08c53e2f0e00}
+      \strng{authornamehash}{4ae1b923217ef3dfe58a08c53e2f0e00}
+      \strng{authorfullhash}{0c66afaf25867ea882fd3a0cf1970b0b}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}
+      \field{title}{Multi-Objective Geometric Optimization of A Multi-Link Manipulator Using Parameterized Design Method}
+      \field{year}{2022}
+      \field{pages}{7310\bibrangedash 7316}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/IROS47612.2022.9982094
+      \endverb
+      \keyw{Geometry;Design methodology;Optimization methods;Manipulators;Task analysis;Intelligent robots}
+    \endentry
+    \entry{stiffness_placement}{article}{}
+      \name{author}{3}{}{%
+        {{hash=594fb26cd80b16952ec140c0db28e414}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jae\bibnamedelima Ho},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=13034aa8cd1f7b3c0f1c08f2b5a5f4de}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Seong\bibnamedelima Hyeon},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=281bdef667afd8736c0df9fc49e5cd7e}{%
+           family={Min},
+           familyi={M\bibinitperiod},
+           given={Byung\bibnamedelima Kwon},
+           giveni={B\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Ltd}%
+      }
+      \strng{namehash}{9108690e6383689d7559f83fd22a821f}
+      \strng{fullhash}{9108690e6383689d7559f83fd22a821f}
+      \strng{bibnamehash}{9108690e6383689d7559f83fd22a821f}
+      \strng{authorbibnamehash}{9108690e6383689d7559f83fd22a821f}
+      \strng{authornamehash}{9108690e6383689d7559f83fd22a821f}
+      \strng{authorfullhash}{9108690e6383689d7559f83fd22a821f}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Robots have various advantages such as multiple degrees of freedom (DOFs), flexibility, and cost efficiency. Although robots have mostly been utilized for painting, welding, pick-and-place, and assembly tasks, robot machining has been actively introduced in many fields to maximize productivity. The main obstacle to robot machining is the poor stiffness of robots, which is lower than that of conventional machine tools. Low stiffness induces compliance errors that deteriorate machining quality. One effort to improve stiffness is tool path compensation, in which compliance errors are predicted and compensated for by utilizing a stiffness model. Another approach to solving the stiffness problem is posture optimization, in which a performance index is defined based on the stiffness model. Such a performance index evaluates stiffness according to the configuration of a robot. Using this index, one can optimize the posture of a robot to maximize stiffness during machining. In previous studies, optimization was performed for the redundant DOF in the spindle axis direction at a given position, assuming a fixed workpiece and vertical feed direction. However, workpiece placement also has to be optimized in the robot workspace to obtain the optimal machining posture. This study introduced a novel approach to posture optimization. A deformation energy model that can evaluate stiffness from an energy perspective was proposed. With the proposed method, the posture of the robot and the workpiece position can be optimized simultaneously. Global optimization was performed within the entire workspace, and simulations were conducted to verify the optimization results. Additionally, local optimization considering the working environment was performed to deal with the practical problems in real scenarios. The results of optimization were verified experimentally.}
+      \field{issn}{07365845}
+      \field{journaltitle}{Robotics and Computer-Integrated Manufacturing}
+      \field{month}{12}
+      \field{title}{Posture optimization in robotic drilling using a deformation energy model}
+      \field{volume}{78}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1016/j.rcim.2022.102395
+      \endverb
+      \keyw{Industrial robot,deformation energy model,pose optimization,robot drilling,robot machining,stiffness}
+    \endentry
+    \entry{Padayachee2012}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5681a3fbcd5ae9fa118a6021a89f5069}{%
+           family={Padayachee},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=14380fb3186e8e452a1f3ce1699c534a}{%
+           family={Bright},
+           familyi={B\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{778f7e4726333404667acc35c8f9ff32}
+      \strng{fullhash}{778f7e4726333404667acc35c8f9ff32}
+      \strng{bibnamehash}{778f7e4726333404667acc35c8f9ff32}
+      \strng{authorbibnamehash}{778f7e4726333404667acc35c8f9ff32}
+      \strng{authornamehash}{778f7e4726333404667acc35c8f9ff32}
+      \strng{authorfullhash}{778f7e4726333404667acc35c8f9ff32}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{02786125}
+      \field{journaltitle}{Journal of Manufacturing Systems}
+      \field{number}{2}
+      \field{title}{Modular machine tools: Design and barriers to industrial implementation}
+      \field{volume}{31}
+      \field{year}{2012}
+      \field{pages}{92\bibrangedash 102}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.jmsy.2011.10.003
+      \endverb
+    \endentry
+    \entry{task_synthesis}{book}{}
+      \name{author}{3}{}{%
+        {{hash=966c7cf009cb328c73460b5193059ba6}{%
+           family={Ramirez},
+           familyi={R\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8733b603380d413227e2d02535c7f148}{%
+           family={Kotlarski},
+           familyi={K\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1f7f0414b6e5adeaf43907cf8bc62e30}{%
+           family={Ortmaier},
+           familyi={O\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{e1b755e3324055ab35d11c44e68d8932}
+      \strng{fullhash}{e1b755e3324055ab35d11c44e68d8932}
+      \strng{bibnamehash}{e1b755e3324055ab35d11c44e68d8932}
+      \strng{authorbibnamehash}{e1b755e3324055ab35d11c44e68d8932}
+      \strng{authornamehash}{e1b755e3324055ab35d11c44e68d8932}
+      \strng{authorfullhash}{e1b755e3324055ab35d11c44e68d8932}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The present work addresses the unification of the structural and dimensional synthesis of serial robot manipulators. Unlike related publications, the approach does not utilize simplifications of the kinematic structures. In addition, it is also capable of generating manipulators with up to six degrees of freedom. The approach reduces the computational effort by automatically generating the task-suitable architectures together with their corresponding optimisation parameters. Since the kinematics modelling is one of the main challenges, an algorithm for the numerical solution of the inverse kinematics is introduced. Finally, in order to demonstrate the capability of the method, the optimal manipulator for a pick and place operation is found using kinematic performance indices and particle swarm optimisation.}
+      \field{issn}{23093706}
+      \field{journaltitle}{CISM International Centre for Mechanical Sciences, Courses and Lectures}
+      \field{title}{Combined Structural and Dimensional Synthesis of Serial Robot Manipulators}
+      \field{volume}{569}
+      \field{year}{2016}
+      \field{pages}{207\bibrangedash 216}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1007/978-3-319-33714-2_23
+      \endverb
+      \keyw{Denavit-Hartenberg parameters,Dimensional synthesis,Robot design,Serial manipulators,Structural synthesis}
+    \endentry
+    \entry{johannes_2}{article}{}
+      \name{author}{6}{}{%
+        {{hash=db91304f9b0d299e658da179df2371ed}{%
+           family={Scholz},
+           familyi={S\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=219a8c2fdc67f44d945e2d308a5bcd9b}{%
+           family={Kaspar},
+           familyi={K\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fc4eaea096c3d5bcbb6829401012e2d9}{%
+           family={König},
+           familyi={K\bibinitperiod},
+           given={Kristian},
+           giveni={K\bibinitperiod}}}%
+        {{hash=315e5ce256068791f3cb98d46bbc0110}{%
+           family={Friedmann},
+           familyi={F\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=62a0574fe3029cb53b6dba0a0012d6a8}{%
+           family={Vielhaber},
+           familyi={V\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bd3a118d192a01a1787cd9f4e565219c}{%
+           family={Fleischer},
+           familyi={F\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{fullhash}{d8600a75726f9c558677695d63b0af6a}
+      \strng{bibnamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authorbibnamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authornamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authorfullhash}{d8600a75726f9c558677695d63b0af6a}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Lightweight design is a key driver for resource and energy efficiency and thus essential on the road to climate neutrality. A systematic and holistic development process can significantly leverage the potential of lightweight design in industries like machinery and plant engineering. This paper describes the application of a novel systematic lightweight design process for the development of a gripping system, considering design, material and manufacturing. Based on the state of the art in gripping system development, the novel systematic lightweight development process is applied to the case study of a gripping system.}
+      \field{issn}{2212-8271}
+      \field{journaltitle}{Procedia CIRP}
+      \field{note}{16th CIRP Conference on Intelligent Computation in Manufacturing Engineering}
+      \field{title}{Lightweight design of a gripping system using a holistic systematic development process - A case study}
+      \field{volume}{118}
+      \field{year}{2023}
+      \field{pages}{187\bibrangedash 192}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.procir.2023.06.033
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S221282712300255X
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S221282712300255X
+      \endverb
+      \keyw{lightweight design,model-based systems engineering,product development,gripping system,case study}
+    \endentry
+    \entry{johannes_1}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=db91304f9b0d299e658da179df2371ed}{%
+           family={Scholz},
+           familyi={S\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3465abe119179c8d4f899b3e36dec693}{%
+           family={Zeidler},
+           familyi={Z\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=632a6bd6aae178f9e71ab15e97274548}{%
+           family={Koessler},
+           familyi={K\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=bd3a118d192a01a1787cd9f4e565219c}{%
+           family={Fleischer},
+           familyi={F\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=509c536add6ee6b56bd34737c3249dca}{%
+           family={Bauernhansl},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=58620efe20578d73bd6e280ddb43001a}{%
+           family={Verl},
+           familyi={V\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=85a6858a036a7c52eaac444b8db90140}{%
+           family={Liewald},
+           familyi={L\bibinitperiod},
+           given={Mathias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=786cc69c37f36c5f17606a8e49a56cf8}{%
+           family={Möhring},
+           familyi={M\bibinitperiod},
+           given={Hans-Christian},
+           giveni={H\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature Switzerland}%
+      }
+      \strng{namehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{fullhash}{5d6d870e11fa84c214796e1611d71f36}
+      \strng{bibnamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authorbibnamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authornamehash}{ddfebbff23dd4180ef7c812fe82e5407}
+      \strng{authorfullhash}{5d6d870e11fa84c214796e1611d71f36}
+      \strng{editorbibnamehash}{440359157ded77b3ecffd406431dff7e}
+      \strng{editornamehash}{440359157ded77b3ecffd406431dff7e}
+      \strng{editorfullhash}{1d07921393f4208cb37d3e0efd2dd095}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The importance of sustainable production is growing all the time. Lightweight design of production equipment is a possible measure to increase the sustainability. These potentials are often not used to their full extent due to a high focus on investment costs. To resolve this target conflict, this paper presents the lightweight design of production equipment based on a systematic development process and the corresponding digital toolchain. It includes a newly lightweight design technology planning tool to optimize cost, CO2 and weight from a production perspective. Based on a rough description of the component and previously modelled requirements an optimized shape, production process and material are recommended. Subsequently, the component can be further detailed with this knowledge. Through the digital toolchain the effects of different designs on the usage of the production equipment can be easily estimated. This enables the developer to identify the potential of lighter but more expensive components.}
+      \field{booktitle}{Production at the Leading Edge of Technology}
+      \field{isbn}{978-3-031-47394-4}
+      \field{title}{Systematic Lightweight Design of Production Equipment with a Digital Toolchain}
+      \field{year}{2024}
+      \field{pages}{24\bibrangedash 33}
+      \range{pages}{10}
+    \endentry
+    \entry{2020SciPy-NMeth}{article}{}
+      \name{author}{35}{}{%
+        {{hash=18703a2bb6a62484483c193a212da2f8}{%
+           family={Virtanen},
+           familyi={V\bibinitperiod},
+           given={Pauli},
+           giveni={P\bibinitperiod}}}%
+        {{hash=646fbfe08374cc41c2f9bd971d8c4725}{%
+           family={Gommers},
+           familyi={G\bibinitperiod},
+           given={Ralf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d500f4849030f34359cdb3e1513acf83}{%
+           family={Oliphant},
+           familyi={O\bibinitperiod},
+           given={Travis\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=35bb9c71f55048509a3e9018c349ed73}{%
+           family={Haberland},
+           familyi={H\bibinitperiod},
+           given={Matt},
+           giveni={M\bibinitperiod}}}%
+        {{hash=fbb0c40f5d70be8ce47ce9daafdf5749}{%
+           family={Reddy},
+           familyi={R\bibinitperiod},
+           given={Tyler},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9fd9ed8466bbb96364ae008f2a665e6e}{%
+           family={Cournapeau},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=09a667aa6a26526bfcccb2676a494e55}{%
+           family={Burovski},
+           familyi={B\bibinitperiod},
+           given={Evgeni},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3d6efaaa3d9682e20787eb06ff70a3d7}{%
+           family={Peterson},
+           familyi={P\bibinitperiod},
+           given={Pearu},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4c7e4c94b846fa41e2fc0a88e0dc656d}{%
+           family={Weckesser},
+           familyi={W\bibinitperiod},
+           given={Warren},
+           giveni={W\bibinitperiod}}}%
+        {{hash=7447cb057596bc2645d3980bb04f5c78}{%
+           family={Bright},
+           familyi={B\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1b5d87f5a394ee92a6edb4c1de058cab}{%
+           family={{van der Walt}},
+           familyi={v\bibinitperiod},
+           given={Stéfan\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=626cc151613864abeb653c0d8172d98c}{%
+           family={Brett},
+           familyi={B\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=57849e8550281b202bd611bf6f11e14b}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b053969d2c6a9ec8689980fb6463cd56}{%
+           family={Millman},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi Jarrod},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=fbaf80580622bd40577f4a6d38021c0a}{%
+           family={Mayorov},
+           familyi={M\bibinitperiod},
+           given={Nikolay},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7bcf847eaccba039f7a4523540673aea}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Andrew\bibnamedelimb R.\bibnamedelimi J.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=4b3d26f886661aa723985bcfd835ba18}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=9ad1d38817acd2f00cb7f324ec7d37ea}{%
+           family={Kern},
+           familyi={K\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8d336f110675c46226ece1db501ce712}{%
+           family={Larson},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=65b1934a87acb0abe09c469aaf11c326}{%
+           family={Carey},
+           familyi={C\bibinitperiod},
+           given={C\bibnamedelima J},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=9989e8a18827e34b15112d671f52bd35}{%
+           family={Polat},
+           familyi={P\bibinitperiod},
+           given={İlhan},
+           giveni={İ\bibinitperiod}}}%
+        {{hash=b8b88d61c79de60e6e1b5d44e03f5dec}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=bf4be16325cb4f641345ca394443fd18}{%
+           family={Moore},
+           familyi={M\bibinitperiod},
+           given={Eric\bibnamedelima W.},
+           giveni={E\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=0fd9a0e34f1b2adda41357c948d14986}{%
+           family={{VanderPlas}},
+           familyi={V\bibinitperiod},
+           given={Jake},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c6a95a8ced3b86b4e7e60a74bc6ebf5a}{%
+           family={Laxalde},
+           familyi={L\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=85242652d69220e83cf71ceb8d90a8cb}{%
+           family={Perktold},
+           familyi={P\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5bca159e697db439e23b8947dfa4b614}{%
+           family={Cimrman},
+           familyi={C\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=70b659f5067a8a2efbee66f770681598}{%
+           family={Henriksen},
+           familyi={H\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=fa5163c76600eb11a4d07a28f0701cb0}{%
+           family={Quintero},
+           familyi={Q\bibinitperiod},
+           given={E.\bibnamedelimi A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=db2b4761cc46be347b418e68660c9554}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Charles\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=7d86aea5ad1f2b4e27f2f014c71712c2}{%
+           family={Archibald},
+           familyi={A\bibinitperiod},
+           given={Anne\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=3876f7c3dbbb1a17823dcd135d07cfc6}{%
+           family={Ribeiro},
+           familyi={R\bibinitperiod},
+           given={Antônio\bibnamedelima H.},
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=bab4e5caee2d67831e464ce575022b37}{%
+           family={Pedregosa},
+           familyi={P\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=8928c27c900ec0b05492cbba126c5196}{%
+           family={{van Mulbregt}},
+           familyi={v\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=aa8bf7a30651c7bc3d20ff02fc843dd9}{%
+           family={{SciPy 1.0 Contributors}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{f252038edd7f112d75da3bf0c1edecbc}
+      \strng{fullhash}{371a3f5cdbab4f8c68cab2e17d157950}
+      \strng{bibnamehash}{f252038edd7f112d75da3bf0c1edecbc}
+      \strng{authorbibnamehash}{f252038edd7f112d75da3bf0c1edecbc}
+      \strng{authornamehash}{f252038edd7f112d75da3bf0c1edecbc}
+      \strng{authorfullhash}{371a3f5cdbab4f8c68cab2e17d157950}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Methods}
+      \field{title}{{{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}}
+      \field{volume}{17}
+      \field{year}{2020}
+      \field{pages}{261\bibrangedash 272}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1038/s41592-019-0686-2
+      \endverb
+    \endentry
+    \entry{pso}{article}{}
+      \name{author}{3}{}{%
+        {{hash=e11b5fdba38c63b5a4a47845b18fc60a}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dongshu},
+           giveni={D\bibinitperiod}}}%
+        {{hash=de744ff0ddc999971eea8ae593962c12}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Dapei},
+           giveni={D\bibinitperiod}}}%
+        {{hash=28dcf77c455b7bee7b41d166d220da13}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1243814b1f531215a9b06ac1c00c5242}
+      \strng{fullhash}{1243814b1f531215a9b06ac1c00c5242}
+      \strng{bibnamehash}{1243814b1f531215a9b06ac1c00c5242}
+      \strng{authorbibnamehash}{1243814b1f531215a9b06ac1c00c5242}
+      \strng{authornamehash}{1243814b1f531215a9b06ac1c00c5242}
+      \strng{authorfullhash}{1243814b1f531215a9b06ac1c00c5242}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Soft computing}
+      \field{number}{2}
+      \field{title}{Particle swarm optimization algorithm: an overview}
+      \field{volume}{22}
+      \field{year}{2018}
+      \field{pages}{387\bibrangedash 408}
+      \range{pages}{22}
+    \endentry
+    \entry{westkaemperEinfuehrungOrganisationProduktion2006}{book}{}
+      \name{author}{2}{}{%
+        {{hash=d0d9abee6aa485cf4fcc6876571e1d7a}{%
+           family={Westkämper},
+           familyi={W\bibinitperiod},
+           given={Engelbert},
+           giveni={E\bibinitperiod}}}%
+        {{hash=4c58fc258e14b8f8b6e028e83317a05d}{%
+           family={Decker},
+           familyi={D\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{f772af1f22c71f82a2a4f265a597cc13}
+      \strng{fullhash}{f772af1f22c71f82a2a4f265a597cc13}
+      \strng{bibnamehash}{f772af1f22c71f82a2a4f265a597cc13}
+      \strng{authorbibnamehash}{f772af1f22c71f82a2a4f265a597cc13}
+      \strng{authornamehash}{f772af1f22c71f82a2a4f265a597cc13}
+      \strng{authorfullhash}{f772af1f22c71f82a2a4f265a597cc13}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-26039-4}
+      \field{series}{{Springer-Lehrbuch}}
+      \field{title}{{Einführung in die Organisation der Produktion}}
+      \field{year}{2006}
+    \endentry
+    \entry{xuMethodDesignModular2017}{article}{}
+      \name{author}{4}{}{%
+        {{hash=95ee93bcf4ed7836d1893025be2061e1}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Zhengyi},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=c9e3077b185e288b1061735829d601c5}{%
+           family={Xi},
+           familyi={X\bibinitperiod},
+           given={Fengfeng},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7fa926169b338a506132078fe52e1886}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Lilan},
+           giveni={L\bibinitperiod}}}%
+        {{hash=685d97480ebafb5a158e7c3dfdcb69a8}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{eef4e497ab02ff3127a83ea8aac584e6}
+      \strng{fullhash}{2f797a18b16546e9b3fdfdecbf191b6d}
+      \strng{bibnamehash}{eef4e497ab02ff3127a83ea8aac584e6}
+      \strng{authorbibnamehash}{eef4e497ab02ff3127a83ea8aac584e6}
+      \strng{authornamehash}{eef4e497ab02ff3127a83ea8aac584e6}
+      \strng{authorfullhash}{2f797a18b16546e9b3fdfdecbf191b6d}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2075-1702}
+      \field{journaltitle}{Machines}
+      \field{month}{2}
+      \field{number}{1}
+      \field{title}{A {{Method}} for {{Design}} of {{Modular Reconfigurable Machine Tools}}}
+      \field{volume}{5}
+      \field{year}{2017}
+      \field{pages}{5}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/machines5010005
+      \endverb
+    \endentry
+    \entry{reconfigurable_production}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7259581be3a8b94803b0eb176fb7203c}{%
+           family={Z.\bibnamedelimi M.\bibnamedelimi Bi},
+           familyi={Z\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={W.\bibnamedelimi Shen},
+           giveni={W\bibinitperiod\bibinitdelim S\bibinitperiod},
+           suffix={S.\bibnamedelimi Y.\bibnamedelimi T.\bibnamedelimi Lang},
+           suffixi={S\bibinitperiod\bibinitdelim Y\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=9a75ee293f2555f40976345739087998}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \strng{fullhash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \strng{bibnamehash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \strng{authorbibnamehash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \strng{authornamehash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \strng{authorfullhash}{b96cc4b39d84cc475e0df4c1c6a309e8}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Production Research}
+      \field{number}{4}
+      \field{title}{Reconfigurable manufacturing systems: the state of the art}
+      \field{volume}{46}
+      \field{year}{2008}
+      \field{pages}{967\bibrangedash 992}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1080/00207540600905646
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1080/00207540600905646
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1080/00207540600905646
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1080/00207540600905646
       \endverb
     \endentry
   \enddatalist
