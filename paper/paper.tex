@@ -36,10 +36,10 @@ Laser tracker placement optimization for highly flexible manufacturing systems
 \renewcommand*{\@fnsymbol}[1]{\ifcase#1\or\@arabic{#1}\else*\fi}
 \makeatother
 
-\author{Jan Baumgärtner \inst{1,2}, 
+\author{Jan Baumgärtner \inst{1,2},
 Max Goebels \inst{1,2},   Alexander Puchta \inst{1,2} and Jürgen Fleischer\inst{1}% <-this % stops a space
 }
-\institute{wbk Institute of Production Science, Karlsruhe Institute of Technology, 
+\institute{wbk Institute of Production Science, Karlsruhe Institute of Technology,
 76131 Karlsruhe, Germany \email{max.goebels@kit.edu}
 \and
 These authors contributed equally to this work.
@@ -49,12 +49,10 @@ These authors contributed equally to this work.
 \tocauthor{Jan Baumgärtner, Max Goebels, Alexander Puchta, and Jürgen Fleischer}
 
 \maketitle
-%\thispagestyle{empty}
-%\pagestyle{empty}
 
 \begin{abstract}
-In recent years, modular and reconfigurable manufacturing systems have gained attention for their adaptability. 
-While system design is now highly automated, designing the verification setup remains a manual design problem involving tasks like placing external sensors to measure performance. 
+In recent years, modular and reconfigurable manufacturing systems have gained attention for their adaptability.
+While system design is now highly automated, designing the verification setup remains a manual design problem involving tasks like placing external sensors to measure performance.
 This paper argues that design optimization approaches for manufacturing systems can also automate the design of the verification setup.
 This is demonstrated using the placement of a laser tracker system with markers that due to their line-of-sight complexity and simultaneous measurement of multiple systems can be challenging to design.
 We present a straightforward optimization approach to demonstrate potential automation in this area.
@@ -63,23 +61,19 @@ We present a straightforward optimization approach to demonstrate potential auto
 \section{Introduction}
 
 The global market for flexible manufacturing systems (FMS) is experiencing significant growth, driven by the increasing demand for customized products and shorter product life cycles~\cite{westkaemperEinfuehrungOrganisationProduktion2006}. FMS are characterized by their ability to adapt to changing requirements, such as variations in product design, production volume, and production sequence. Modular reconfigurable machine tools (MRMT) are a key component of FMS, as they can modify their physical structure to meet evolving product demands~\cite{Padayachee2012}.
-
 The majority of research in the field of MRMT has concentrated on the development of architectures that adhere to open or semi-open standards, the modular components, and methods for optimizing configurations based on performance metrics~\cite{gadallaRecentAdvancesResearch2017, xuMethodDesignModular2017}.
-
 Despite the aforementioned advancements, a significant gap in the research field remains: the verification of the performance of the aforementioned proposed configurations is often limited to simulations, which are susceptible to a reality gap. Alternatively, manual experimental setups using external sensors are used. However, these manual setups are not only time-consuming but also require expert knowledge and are susceptible to errors, rendering them inadequate for rigorous verification.
-
-To address this issue, our paper introduces an automated approach to task-based sensor placement optimization for the verification of MRMT. For the purposes of this study, we consider a robot cell to be an ideal test case for the proposed approach, providing an upper bound for the complexity of task trajectories. This is based on the recognition that although the reconfiguration of robot cells is less pronounced, the task trajectories within them are typically more complex than those typically found in MRMT applications. 
+To address this issue, our paper introduces an automated approach to task-based sensor placement optimization for the verification of MRMT. For the purposes of this study, we consider a robot cell to be an ideal test case for the proposed approach, providing an upper bound for the complexity of task trajectories. This is based on the recognition that although the reconfiguration of robot cells is less pronounced, the task trajectories within them are typically more complex than those typically found in MRMT applications.
 \section{State of the art}
-The work presented in this paper intersects two research fields: manufacturing systems optimization and sensor placement optimization. 
-Our primary question is what aspects of a manufacturing system we need to verify. 
+The work presented in this paper intersects two research fields: manufacturing systems optimization and sensor placement optimization.
+Our primary question is what aspects of a manufacturing system we need to verify.
 We focus on system-based verification rather than product-based, aiming to measure the performance of the manufacturing system, not the resulting product quality.
 In particular we focuss on approaches that solves what~\cite{reconfigurable_production} calls reconfiguration design problem.
-This involves either combining fixed modules to form a system or directly optimizing the systems physical design. 
-Examples include robot cell optimization problems~\cite{previous_work, stiffness_placement} and robot design optimization problems~\cite{task_synthesis, ad-hoc_manipulator, multi_objective}.  
-For a manufacturing perspective, works such as~\cite{johannes_1, johannes_2} are relevant. 
-All of these approaches focus on phyiscal capabilities such as payload, accuracy, stiffness, force, weight, and motion. 
-
-To verify that the optimized system configuration achieves the desired performance, we need to measure the system's performance using external sensors, 
+This involves either combining fixed modules to form a system or directly optimizing the systems physical design.
+Examples include robot cell optimization problems~\cite{previous_work, stiffness_placement} and robot design optimization problems~\cite{task_synthesis, ad-hoc_manipulator, multi_objective}.
+For a manufacturing perspective, works such as~\cite{johannes_1, johannes_2} are relevant.
+All of these approaches focus on phyiscal capabilities such as payload, accuracy, stiffness, force, weight, and motion.
+To verify that the optimized system configuration achieves the desired performance, we need to measure the system's performance using external sensors,
 however in all of the above works the sensor placement for verification (if done at all) is done manually.
 This can be a challening task which brings us to the field of sensor placement optimization.
 The goal here is to find the optimal sensor placement for accurate system performance measurement.
@@ -88,8 +82,8 @@ Here key algorithms where already identified such as genetic algorithms, particl
 Based on these works we will also use a particle swarm optimization algorithm for our problem.
 However the field of structural health monitoring mainly considers static systems while our manufacturing systems are by nature dynamic.
 This introduces additional challenges since the sensor placement needs to account for the systems total trajectory.
-This challenge has only recently been addressed in manufacturing systems~\cite{ieee_sensors}. Although this early work focuses on process control, not system verification, its methodologies are applicable, 
-emphasizing optimizing an objective integrated over total process time. 
+This challenge has only recently been addressed in manufacturing systems~\cite{ieee_sensors}. Although this early work focuses on process control, not system verification, its methodologies are applicable,
+emphasizing optimizing an objective integrated over total process time.
 However, since we are not using cameras as in the previous study, we must derive our own visibility model reflecting the measurement characteristics of a laser tracker.
 This will be the focus of the next section.
 
@@ -104,7 +98,7 @@ Line of sight visibility and field of view visibility.
 Both  are depicted in figure~\ref{fig:visibility}.
 \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/visibility.png}
+        \includegraphics[width=0.7\textwidth]{figures/visibility.png}
         \caption{Field of view (FOV) angle range and line of sight (LOS) components of marker visibility}
         \label{fig:visibility}
 \end{figure}
@@ -160,17 +154,8 @@ The final pose of the marker ($p_m$) is then given by combining the flange trans
 
 While $T_{m}$ is a 4x4 matrix, it can be parameterized using the marker's position ($p_{p_m}$) and orientation ($p_{o_m}$), resulting in a 6-dimensional design space for the marker pose.
 To avoid unrealistic positions, we constrain this space to keep the marker close to the manufacturing system's surface.
-This constraint can be represented cylindrically:
-\begin{equation}
-    \begin{split}
-        \sqrt{p_{p_m,x}^2 + p_{p_m,y}^2} &\leq r \\
-        0 \leq p_{p_m,z} &\leq h
-    \end{split}
-\end{equation}
-
-where $r$ is the cylinder's radius and $h$ is its height.
-Additionally, to ensure the marker remains near the surface, a penalty function can be added to the objective function to penalize markers positioned too far from the flange.\\
-\\
+This can be formulated as a cylindrical constraint.
+Additionally, to ensure the marker remains near the surface, a penalty function can be added to the objective function to penalize markers positioned too far from the flange.
 The laser tracker's pose is defined by a transformation matrix $T_{l}$, but due to its spherical measurement volume, only its position ($p_{p_l}$) needs to be specified.
 The laser tracker is mounted on a stand with a height range constraint:
 \begin{equation}
@@ -186,6 +171,7 @@ Using the design variables and constraints of the marker and laser tracker, the 
         & \ h_{min} \leq p_{p_l,z} \leq h_{max} \\
     \end{split}
 \end{equation}
+where $r$ is the cylinder's radius and $h$ is its height.
 
 
 \section{Optimization algorithm}
@@ -222,20 +208,33 @@ The penalty function can be defined as:
 where $\rho$ is a large penalty factor.
 
 
-\begin{table}  %TODO anpassen
+\begin{table}
+    \centering
+    \caption{Hyperparameters of the PSO algorithm}
+    \begin{minipage}{.45\linewidth}
         \centering
         \begin{tabular}{c|c}
-                Hyperparameter & Value \\
-                \hline
-                Number of particles & 500 \\
-                Number of iterations & 100 \\
-                Inertia weight & 0.8 \\
-                Cognitive coefficient & 0.1 \\
-                Social coefficient & 0.1 \\
+            Hyperparameter & Value \\
+            \hline
+            Number of particles & 500 \\
+            Number of iterations & 100 \\
         \end{tabular}
-        \caption{Hyperparameters of the PSO algorithm}
-        \label{tab:hyperparameters}
+    \end{minipage}%
+    \hspace{0.01\linewidth}%
+    \begin{minipage}{.45\linewidth}
+        \centering
+        \begin{tabular}{c|c}
+            Hyperparameter & Value \\
+            \hline
+            Inertia weight & 0.8 \\
+            Cognitive coefficient & 0.1 \\
+            Social coefficient & 0.1 \\
+        \end{tabular}
+    \end{minipage}
+
+    \label{tab:hyperparameters}
 \end{table}
+
 
 \section{Simulation Environment}
 Evaluating the objective function requires a simulation of the manufacturing system.
@@ -243,25 +242,19 @@ The tricky part here is that since the manufacturing is actively manufacturing p
 For this purpose we are using the pybullet-industrial package \cite{pybullet_industrial}.
 This extension of the pybullet physics engine allows us to simulate not only the robot but also the manufacturing process.
 For the purposes of this paper the markers are implemented as a pybullet industrial endeffector object that is attached to the robot.
-A image of the simulation environment is shown in figure \ref{fig:simulation}.
-\begin{figure}
-        \centering
-        \includegraphics[width=\textwidth]{figures/simulation.png}
-        \caption{Simulation environment used for the optimization}
-        \label{fig:simulation}
-\end{figure}
+A image of the simulation environment is shown in Fig. \ref{fig:trajectory}.
 
 \section{Sample Testcase}
 To test the performance of our optimizer, we need to define a testcase.
 Both robots are Comau NJ290 industrial robots with a reach of 2.9 meters.
 The right robot services the CNC machine and the additive manufacturing system, while the left robot performs a high-precision manufacturing task.
-For this test, the left robot follows a rectangular trajectory with dimensions of 0.4 meters in length and 0.6 meters in width, as depicted in Figure \ref{fig:trajectory}.
+For this test, the left robot follows a rectangular trajectory with dimensions of 0.4 meters in length and 0.6 meters in width, as depicted in Fig. \ref{fig:trajectory}.
 The aim is now to find a laser tracker and marker placement that can track the left robot throughout its entire trajectory.
 We compare this to the performance of the initial population of marker and laser tracker placements used to start the optimization process.
-Figure \ref{fig:iterations} illustrates the performance of the algorithm over multiple iterations.
+Fig. \ref{fig:iterations} illustrates the performance of the algorithm over multiple iterations.
 The results show that the algorithm converges to a solution in roughly 40 iterations, which is relatively fast for an optimization approach.
 This speed is likely due to the existence of numerous optimal placements for the laser tracker and markers.
-The final solution is also depicted in Figure \ref{fig:trajectory}.
+The final solution is also depicted in Fig. \ref{fig:trajectory}.
 In conclusion the results show that the optimization approach is capable of finding a suitable laser tracker and marker placement for the manufacturing system.
 We have also verified that the algorithm is capable of handling the dynamic nature of the manufacturing system, as the optimization is performed over the entire trajectory of the robot.
 
@@ -274,7 +267,7 @@ We have also verified that the algorithm is capable of handling the dynamic natu
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/trajectory.png}
+\includegraphics[width=0.75\textwidth]{figures/trajectory.png}
 \caption{Trajectory of the robot and final laser tracker and marker placements.}
 \label{fig:trajectory}
 \end{figure}
@@ -282,20 +275,18 @@ We have also verified that the algorithm is capable of handling the dynamic natu
 \section{Conclusion}
 
 In this paper, we argue that automating the verification setup in manufacturing systems is feasible using optimization methods.
-We demonstrated this with a particle swarm optimization algorithm that optimizes the placement of a laser tracker and markers. 
-Although initially labor-intensive, this approach proves beneficial for frequently reconfiguring systems as it requires only a simulation for each verification. 
-Our results confirm the algorithm's effectiveness in determining optimal sensor placements, significantly reducing the manual effort required by engineers. 
-We believe sensor placement optimization is a promising tool for researchers to verify system performance. 
-However, the field is nascent with several unanswered questions about integrating optimization in reconfiguration processes, 
-the potential for setup reuse across different designs, and developing multiple optimal solutions. 
+We demonstrated this with a particle swarm optimization algorithm that optimizes the placement of a laser tracker and markers.
+Although initially labor-intensive, this approach proves beneficial for frequently reconfiguring systems as it requires only a simulation for each verification.
+Our results confirm the algorithm's effectiveness in determining optimal sensor placements, significantly reducing the manual effort required by engineers.
+We believe sensor placement optimization is a promising tool for researchers to verify system performance.
+However, the field is nascent with several unanswered questions about integrating optimization in reconfiguration processes,
+the potential for setup reuse across different designs, and developing multiple optimal solutions.
 We hope this paper serves as a catalyst for further research in this domain.
 
 
-
 \section{Acknowledgements}
-The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
-This work was supported by the Ministry of Science, Research and Arts of the Federal State of Baden-Württemberg within the InnovationsCampus Future Mobility. The APC was funded by Innovationscampus Mobilität der Zukunft (ICM), grant number SdManu7.
-The robot cell in the sample test case are part of the project funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - SFB-1574 - 471687386.
+This work was supported by the Ministry of Science, Research and Arts of the Federal State of Baden-Württemberg within the InnovationsCampus Future Mobility.
+It was also funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - SFB-1574 - 471687386.
 %Bibliography
 %TODO checken ob das stimmt in template
 \printbibliography
