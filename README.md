@@ -1,13 +1,14 @@
 # Laser Tracker Placement Optimization
 
-This repository contains the code for the paper "Laser tracker placement optimization for highly flexible
-manufacturing systems".
+![placement](paper/figures/trajectory.png)
 
-It provides the code to reproduce the results of the paper, as well as the ability to run optimize laser tracker placements for yor own systems.
+This repository contains the code for the paper "Laser Tracker Placement Optimization for Highly Flexible Manufacturing Systems."
+
+It provides the code to reproduce the results of the paper, as well as the ability to optimize laser tracker placements for your own systems.
 
 ## Installation
 
-The code is implemented as a simple python script and requires the packages in the `requirements.txt` file. To install the required packages, run the following command:
+The code is implemented as a simple Python script and requires the packages listed in the `requirements.txt` file. To install the required packages, run the following command:
 
 ```bash
 pip install -r requirements.txt
@@ -15,7 +16,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Reproduce the results
+### Reproducing the results
 
 To reproduce the results of the paper, run the  `paper_experiments.py` script. This script will run the optimization for the different scenarios and save the results in the `results` folder:
 
@@ -41,7 +42,7 @@ Since the particle swarm optimization algorithm may find multiple solution of si
 ![Visualization](paper/paper_visualization_screenshot.png)
 
 
-### Optimize your own system
+### Optimizing your own system
 
 To optimize your own system, you can use the `custom_optimization.py` script. This script allows you to specify the parameters of your system and run the optimization.
 The comments in the script provide guidance on how to specify the parameters of your system.
