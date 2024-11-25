@@ -1,0 +1,6 @@
+numpy==1.19.5
+pybullet==3.2.4
+pybullet-industrial
+rich==12.4.4
+seaborn
+matplotlib==3.5.1
