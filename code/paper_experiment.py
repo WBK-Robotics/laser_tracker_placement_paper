@@ -264,8 +264,8 @@ def run_experiment():
                                                         start_velocities, max_iter=100)
 
     # save particle log and objective log
-    np.save("particle_log.npy", particle_log)
-    np.save("objective_log.npy", obj_log)
+    np.save(os.path.join("results","particle_log.npy"), particle_log)
+    np.save(os.path.join("results","objective_log.npy"), obj_log)
 
 
 

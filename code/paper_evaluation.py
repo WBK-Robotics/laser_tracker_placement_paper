@@ -1,9 +1,10 @@
+import os
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load the objective log data
-objective_log = np.load("objective_log.npy")
+objective_log = np.load(os.path.join("results","objective_log.npy"))
 
 # Calculate the mean and the percentiles for the hull curve
 mean_values = np.mean(objective_log, axis=1)

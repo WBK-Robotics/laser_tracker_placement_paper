@@ -4,7 +4,6 @@ import tkinter as tk
 from tkinter import ttk
 from paper_experiment import LaserTrackerEnv
 import pybullet as p
-import pybullet_industrial as pi
 
 class ParticleSelectorApp:
     def __init__(self, master, particles, objective_log, env, threshold=1):
@@ -55,8 +54,8 @@ class ParticleSelectorApp:
 
 
 if __name__ == "__main__":
-    particle_log = np.load("particle_log.npy")
-    objective_log = np.load("objective_log.npy")
+    particle_log = np.load(os.path.join("results","particle_log.npy"))
+    objective_log = np.load(os.path.join("results","objective_log.npy"))
     env = LaserTrackerEnv(rendering=True)
 
     last_particle_round = particle_log[-1]
