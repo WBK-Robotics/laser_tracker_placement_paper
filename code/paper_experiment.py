@@ -8,7 +8,7 @@ import pybullet_industrial as pi
 from rich.console import Console
 
 from optical_marker import ActiveMarker
-from particle_optimizer import particle_optimizer, particle_optimizer_log
+from particle_optimizer import  particle_optimizer_log
 
 
 
